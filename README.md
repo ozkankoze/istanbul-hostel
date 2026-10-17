@@ -77,6 +77,18 @@ Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → re
 5. Renkler ve yazı tipleri: `src/app/globals.css` (`@theme` token'ları) ve `src/lib/fonts.ts`. Logo: `src/components/brand/logo.tsx`, `src/app/icon.svg`.
 6. Statik metinler: `src/i18n/dictionaries/*.ts`.
 
+## GitHub + Vercel ile yayınlama
+
+1. Projeyi GitHub'a gönderin (boş bir repo oluşturup `git push`).
+2. vercel.com → **Add New → Project** → GitHub reposunu seçin. Framework otomatik olarak Next.js algılanır.
+3. Proje içinde **Storage** sekmesinden:
+   - **Neon (Postgres)** ekleyin → `DATABASE_URL` ve `DATABASE_URL_UNPOOLED` otomatik tanımlanır.
+   - **Blob** ekleyin → `BLOB_READ_WRITE_TOKEN` otomatik tanımlanır (panelden yüklenen fotoğraflar için).
+4. **Settings → Environment Variables**: `SESSION_SECRET`, `APP_URL` (ör. `https://istanbul-hostel.vercel.app`), `DEMO_PASSWORD`, `DEMO_MODE=false`.
+5. **Deploy**. `vercel.json` derleme sırasında migration'ları uygular ve veritabanı boşsa demo verisini bir kez yükler; dolu veritabanına dokunmaz.
+
+Notlar: Bölge `fra1` (Frankfurt) olarak ayarlıdır; Neon veritabanını da Frankfurt'ta oluşturun. Form hız sınırı sunucu örneği başına çalışır; yoğun trafikte Upstash Redis ile değiştirin.
+
 ## Komutlar
 
 ```bash

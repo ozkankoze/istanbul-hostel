@@ -66,6 +66,11 @@ async function wipe() {
 }
 
 async function main() {
+  // `--if-empty` is used on deploy: only seed a brand-new database, never wipe real data.
+  if (process.argv.includes("--if-empty") && (await db.property.count()) > 0) {
+    console.log("Database already has data — skipping demo seed.");
+    return;
+  }
   console.log("Seeding Istanbul Hostel demo data…");
   await wipe();
 

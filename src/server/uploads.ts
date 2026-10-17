@@ -4,8 +4,10 @@ import path from "node:path";
 import { randomBytes } from "node:crypto";
 
 /**
- * Local-disk storage for admin uploads. On a single server this persists in
- * ./storage/uploads; swap this module for S3/R2 when deploying to serverless.
+ * Image storage for admin uploads.
+ * - On Vercel (BLOB_READ_WRITE_TOKEN set): Vercel Blob, because the server
+ *   filesystem there is read-only and wiped between deployments.
+ * - Elsewhere: local disk in ./storage/uploads, served by /media/[file].
  */
 export const UPLOAD_DIR = path.join(process.cwd(), "storage", "uploads");
 
@@ -32,6 +34,13 @@ export async function saveImage(file: File): Promise<{ url: string } | { error: 
   const type = sniff(buf);
   if (!type) return { error: "Upload a JPEG, PNG, WebP or AVIF image." };
   const name = `${Date.now().toString(36)}-${randomBytes(6).toString("hex")}.${TYPES[type]}`;
+
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const { put } = await import("@vercel/blob");
+    const blob = await put(`uploads/${name}`, buf, { access: "public", contentType: type, addRandomSuffix: false });
+    return { url: blob.url };
+  }
+
   await mkdir(UPLOAD_DIR, { recursive: true });
   await writeFile(path.join(UPLOAD_DIR, name), buf);
   return { url: `/media/${name}` };

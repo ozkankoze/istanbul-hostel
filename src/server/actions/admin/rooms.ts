@@ -29,7 +29,7 @@ export async function saveRoomType(_: unknown, fd: FormData) {
       capacity: z.coerce.number().int().min(1, "Capacity must be at least 1.").max(30).parse(str(fd, "capacity")),
       sizeSqm: str(fd, "sizeSqm") ? z.coerce.number().int().min(1).max(500).parse(str(fd, "sizeSqm")) : null,
       amenities: fd.getAll("amenities").map(String).filter((a) => AMENITIES.includes(a)),
-      images: fd.getAll("images").map(String).filter((s) => s.startsWith("/")),
+      images: fd.getAll("images").map(String).filter((s) => s.startsWith("/") || /^https:\/\/[\w.-]+\.public\.blob\.vercel-storage\.com\//.test(s)),
       isActive: fd.get("isActive") === "on",
       kind: z.enum(["DORM", "PRIVATE"]).parse(str(fd, "kind")),
       genderPolicy: z.enum(["MIXED", "FEMALE"]).parse(str(fd, "genderPolicy") || "MIXED"),
