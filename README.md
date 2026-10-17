@@ -49,7 +49,7 @@ Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → re
 
 | Yol | İçerik |
 |---|---|
-| `/en`, `/bs`, `/tr` | Genel web sitesi (dil öneki zorunlu; `/` tarayıcı diline göre yönlendirir) |
+| `/en`, `/bs`, `/tr` | Genel web sitesi. İlk ziyarette dil ülkeye göre seçilir: BA/HR/RS/ME → Boşnakça, diğer herkes → İngilizce. Türkçe otomatik açılmaz, menüden seçilebilir; seçim hatırlanır. Mantık `src/proxy.ts` içinde. |
 | `/{dil}/book` | Rezervasyon talebi akışı |
 | `/guest?room=204` | QR misafir rehberi (dile yönlendirir) |
 | `/staff` | Housekeeping mobil uygulaması |

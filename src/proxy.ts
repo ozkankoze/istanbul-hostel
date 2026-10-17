@@ -6,24 +6,29 @@ const SESSION_COOKIE = "ih_session";
 /** Paths that are not localized (staff tools, API, auth, media). */
 const UNLOCALIZED = ["/admin", "/staff", "/login", "/api", "/media"];
 
+/** Countries whose visitors get Bosnian automatically (BCMS-speaking). */
+const BOSNIAN_COUNTRIES = new Set(["BA", "HR", "RS", "ME"]);
+const BOSNIAN_LANGS = new Set(["bs", "hr", "sr", "sh", "cnr"]);
+
+/**
+ * Language for a first visit:
+ * 1. a language the visitor chose before (cookie)
+ * 2. their country (Vercel / Cloudflare geo headers) — BA, HR, RS, ME → Bosnian
+ * 3. a Bosnian-family browser language (for visitors abroad or hosts without geo headers)
+ * 4. English for everyone else.
+ * Turkish is never picked automatically — guests can still choose it in the language menu.
+ */
 function preferredLocale(request: NextRequest): Locale {
   const cookie = request.cookies.get(LOCALE_COOKIE)?.value;
   if (isLocale(cookie)) return cookie;
+
+  const country = (request.headers.get("x-vercel-ip-country") ?? request.headers.get("cf-ipcountry") ?? "").toUpperCase();
+  if (BOSNIAN_COUNTRIES.has(country)) return "bs";
+
   const header = request.headers.get("accept-language") ?? "";
-  const ranked = header
-    .split(",")
-    .map((part) => {
-      const [tag, q] = part.trim().split(";q=");
-      return { tag: (tag ?? "").toLowerCase(), q: q ? Number(q) : 1 };
-    })
-    .sort((a, b) => b.q - a.q);
-  for (const { tag } of ranked) {
-    const base = tag.split("-")[0];
-    // Bosnian, Croatian, Serbian and Montenegrin speakers read Bosnian comfortably.
-    if (base === "bs" || base === "hr" || base === "sr" || base === "sh" || base === "cnr") return "bs";
-    if (base === "tr") return "tr";
-    if (base === "en") return "en";
-  }
+  const first = header.split(",")[0]?.trim().split(";")[0]?.toLowerCase().split("-")[0] ?? "";
+  if (BOSNIAN_LANGS.has(first)) return "bs";
+
   return defaultLocale;
 }
 
