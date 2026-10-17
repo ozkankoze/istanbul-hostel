@@ -426,12 +426,8 @@ async function main() {
   }
 
   // ── QR codes ───────────────────────────────────────────
-  await db.qrCode.create({ data: { propertyId, label: "Reception desk", path: "/guest", scans: 41 } });
-  for (const r of rooms) {
-    await db.qrCode.create({
-      data: { propertyId, label: `Room ${r.number}`, roomId: roomByNumber[r.number]!.id, path: `/guest?room=${r.number}`, scans: Math.floor(Math.random() * 25) },
-    });
-  }
+  // One shared code at reception opens the guest guide.
+  await db.qrCode.create({ data: { propertyId, label: "Reception", path: "/guest", scans: 41 } });
 
   await db.auditLog.create({
     data: { userId: users.admin!.id, action: "seed", entity: "Property", entityId: propertyId, summary: "Demo data loaded" },

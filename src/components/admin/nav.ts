@@ -22,7 +22,7 @@ export const ADMIN_NAV: { href: string; label: string; icon: typeof LayoutDashbo
   { href: "/admin/tasks", label: "Staff & Tasks", icon: ClipboardList, permission: "tasks" },
   { href: "/admin/experiences", label: "Tours & Activities", icon: Ticket, permission: "experiences" },
   { href: "/admin/guide", label: "Guest Guide", icon: BookOpenText, permission: "guide" },
-  { href: "/admin/qr", label: "QR Code Generator", icon: QrCode, permission: "qr" },
+  { href: "/admin/qr", label: "QR Code", icon: QrCode, permission: "qr" },
   { href: "/admin/content", label: "Website Content", icon: PanelsTopLeft, permission: "content" },
   { href: "/admin/settings", label: "Settings", icon: Settings, permission: "settings" },
 ];
