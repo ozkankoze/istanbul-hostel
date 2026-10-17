@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Istanbul Hostel — Akıllı Hostel Yönetimi ve Misafir Deneyimi Platformu
 
-## Getting Started
+Medya 333 tarafından geliştirilen demo platform. Bağımsız hosteller ve butik oteller için çok dilli web sitesi, doğrudan rezervasyon, QR misafir rehberi, tur/aktivite talepleri, housekeeping ve yönetim panelini tek bir Next.js uygulamasında birleştirir.
 
-First, run the development server:
+> **Demo içerik:** Fiyatlar, yorumlar, adres ve iletişim bilgileri örnektir. Gerçek bir işletmeye ait değildir.
+
+## Teknoloji
+
+Next.js 16 (App Router, Turbopack) · TypeScript · Tailwind CSS 4 · shadcn/ui tarzı bileşenler (Radix) · Lucide · PostgreSQL · Prisma 7 · Zod 4 · `qrcode` · bcrypt. Paket yöneticisi: **npm**.
+
+## Kurulum
+
+Gereksinimler: Node.js 20.19+ (22 önerilir), PostgreSQL 14+.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install                 # prisma generate otomatik çalışır
+cp .env.example .env        # DATABASE_URL, SESSION_SECRET, APP_URL, DEMO_PASSWORD değerlerini doldurun
+npx prisma migrate deploy   # şemayı oluşturur
+npm run db:seed             # demo verilerini yükler (mevcut veriyi SİLER)
+npm run dev                 # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Üretim için: `npm run build && npm start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Ortam değişkenleri
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Değişken | Açıklama |
+|---|---|
+| `DATABASE_URL` | PostgreSQL bağlantı adresi |
+| `SESSION_SECRET` | Oturum token'larını hash'lemek için 32+ bayt rastgele değer (`openssl rand -hex 32`) |
+| `APP_URL` | Genel alan adı. QR kodları bu adrese yönlenir — basmadan önce ayarlayın |
+| `DEMO_PASSWORD` | Seed'in tüm demo hesaplarına verdiği şifre. Boşsa rastgele üretilip konsola yazılır |
+| `DEMO_MODE` | `true` ise giriş sayfasında demo hesap kısayolları görünür. **Canlı ortamda asla açmayın** |
 
-## Learn More
+### Demo hesapları (seed sonrası)
 
-To learn more about Next.js, take a look at the following resources:
+| Rol | E-posta | Erişim |
+|---|---|---|
+| Yönetici | admin@istanbulhostel.example | Her şey |
+| Müdür | manager@istanbulhostel.example | Personel hesapları ve ayarlar hariç her şey |
+| Resepsiyon | reception@istanbulhostel.example | Rezervasyonlar, misafirler, turlar, rehber, QR, görevler |
+| Housekeeping | ayse@ / mehmet@ / lejla@istanbulhostel.example | Yalnızca `/staff` uygulaması |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Şifre: `.env` içindeki `DEMO_PASSWORD`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → referans `IH-DEMO24`, soyad `Fischer`.
 
-## Deploy on Vercel
+## Adresler
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Yol | İçerik |
+|---|---|
+| `/en`, `/bs`, `/tr` | Genel web sitesi (dil öneki zorunlu; `/` tarayıcı diline göre yönlendirir) |
+| `/{dil}/book` | Rezervasyon talebi akışı |
+| `/guest?room=204` | QR misafir rehberi (dile yönlendirir) |
+| `/staff` | Housekeeping mobil uygulaması |
+| `/admin` | Yönetim paneli (11 bölüm) |
+| `/login` | Personel girişi |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Mimari notlar
+
+- **Stok ve müsaitlik** (`src/server/availability.ts`): Yatakhaneler yatak bazında, özel odalar oda bazında satılır. Müsaitlik = aktif ve engellenmemiş stok − çakışan *onaylı* tahsisler. Bekleyen talepler stok düşmez; onay anında `Serializable` bir transaction içinde gerçek yatak/oda atanır, böylece aynı son yatağı iki kişiye vermek mümkün değildir.
+- **Doluluk ve housekeeping ayrıdır**: Doluluk rezervasyon tahsislerinden hesaplanır; temizlik durumu odada ayrı tutulur ve her değişiklik `HousekeepingLog` tablosuna yazılır.
+- **Çok dillilik** (`src/i18n`): Arayüz metinleri tipli sözlüklerde (EN/BS/TR), veritabanı içerikleri `{ en, bs, tr }` JSON alanlarında. Çevrilmemiş alanlar İngilizceye düşer. Yönetim paneli İngilizcedir.
+- **Kimlik doğrulama** (`src/server/auth.ts`): bcrypt (cost 12), veritabanında hash'lenmiş oturum token'ları, httpOnly çerez, 15 dakikada 5 hatalı denemede kilit. Rol kontrolleri her sayfada ve her server action'da sunucu tarafında yapılır (`PERMISSIONS` tablosu). `proxy.ts` yalnızca iyimser yönlendirme yapar.
+- **Misafir doğrulama**: QR'daki oda numarası yetki vermez. Oda hizmetleri için rezervasyon referansı + soyad gerekir; başarılı doğrulama çıkış gününe kadar geçerli bir oturum açar.
+- **Denetim kaydı**: Önemli değişiklikler `AuditLog` tablosuna yazılır (Ayarlar → Audit log).
+- **Yüklemeler** (`src/server/uploads.ts`): Görseller `storage/uploads` klasörüne kaydedilir ve `/media/...` üzerinden sunulur; dosya türü içerikten doğrulanır, 5 MB sınırı vardır. Sunucusuz ortamda bu modülü S3/R2 ile değiştirin.
+- **Hız sınırı** (`src/lib/rate-limit.ts`): Genel formlar için bellek içi sınırlayıcı. Birden fazla sunucuda Redis ile değiştirin.
+- **Kanal yöneticisi**: Booking.com/Hostelworld senkronizasyonu yoktur; `Reservation.source` alanı ve `availability.ts` ileride bir entegrasyon için tek giriş noktasıdır.
+
+## Başka bir işletmeye uyarlama
+
+1. Yönetim paneli → **Settings**: ad, adres, telefon, WhatsApp, e-posta, yorum sayfası, "Demo mode" anahtarı.
+2. **Rooms & Beds**: oda tipleri, fiyatlar, fotoğraflar, odalar ve yatak sayıları.
+3. **Website Content**: ana sayfa başlığı ve görseli, SSS, yorumlar.
+4. **Guest Guide**: Wi-Fi, kahvaltı, kurallar, olanaklar, ulaşım, yerel öneriler.
+5. Renkler ve yazı tipleri: `src/app/globals.css` (`@theme` token'ları) ve `src/lib/fonts.ts`. Logo: `src/components/brand/logo.tsx`, `src/app/icon.svg`.
+6. Statik metinler: `src/i18n/dictionaries/*.ts`.
+
+## Komutlar
+
+```bash
+npm run dev         # geliştirme sunucusu
+npm run build       # üretim derlemesi
+npm run typecheck   # TypeScript kontrolü
+npm run lint        # ESLint
+npm run db:migrate  # yeni migration oluştur
+npm run db:seed     # demo verisini yeniden yükle
+```
+
+## Fotoğraflar
+
+Tüm fotoğraflar Unsplash Lisansı ile kullanılmıştır; fotoğrafçılar ve kaynaklar `public/images/CREDITS.md` dosyasındadır.
+
+## Canlıya almadan önce
+
+- `DEMO_MODE` kapalı olsun; seed hesaplarını silin veya şifrelerini değiştirin.
+- `APP_URL` gerçek alan adı olsun, HTTPS kullanın.
+- Gizlilik politikası ve şartlar şablon metindir; bir hukukçuya inceletin.
+- Örnek yorumları gerçek ve izinli yorumlarla değiştirin.
