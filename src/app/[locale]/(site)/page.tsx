@@ -33,6 +33,15 @@ import {
 import { db } from "@/lib/db";
 
 const whyIcons = [MapPin, BedDouble, Coffee, QrCode, Users, Wallet];
+// İznik tile colours, rotated across the "why stay" list
+const whyTones = [
+  "bg-cobalt-soft text-cobalt",
+  "bg-tile-soft text-tile",
+  "bg-saffron-soft text-[#9a6a0c]",
+  "bg-tulip-soft text-tulip",
+  "bg-tile-soft text-tile",
+  "bg-cobalt-soft text-cobalt",
+];
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
@@ -153,7 +162,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             const Icon = whyIcons[i] ?? MapPin;
             return (
               <li key={w.title} className="border-t border-line pt-6">
-                <Icon aria-hidden className="size-5 text-cobalt" strokeWidth={1.6} />
+                <span className={`flex size-10 items-center justify-center rounded-lg ${whyTones[i] ?? whyTones[0]}`}>
+                  <Icon aria-hidden className="size-5" strokeWidth={1.8} />
+                </span>
                 <h3 className="mt-4 text-[17px] font-semibold">{w.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-slate">{w.body}</p>
               </li>
@@ -163,10 +174,10 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       </Section>
 
       {/* ── Explore Istanbul ─────────────────────────── */}
-      <Section tone="ink">
+      <Section tone="cobalt">
         <SectionHeading
           title={t.home.exploreTitle}
-          intro={<span className="text-paper/70">{t.home.exploreIntro}</span>}
+          intro={<span className="text-paper/80">{t.home.exploreIntro}</span>}
           action={
             <Button asChild variant="outline" className="text-paper">
               <Link href={href(locale, "/explore")}>{t.nav.explore}</Link>
@@ -193,7 +204,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                 sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 100vw"}
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/5 to-transparent" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-cobalt-deep/90 via-ink/5 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
                 <p className="text-[12.5px] text-paper/70">
                   {t.explore.categories[p.category]} · {p.area}

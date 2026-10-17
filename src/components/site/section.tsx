@@ -6,7 +6,7 @@ export function Section({
   tone = "default",
   id,
   ...rest
-}: React.HTMLAttributes<HTMLElement> & { tone?: "default" | "paper" | "ink" }) {
+}: React.HTMLAttributes<HTMLElement> & { tone?: "default" | "paper" | "ink" | "cobalt" }) {
   return (
     <section
       id={id}
@@ -14,6 +14,7 @@ export function Section({
         "py-20 md:py-28",
         tone === "paper" && "bg-paper",
         tone === "ink" && "bg-ink text-paper",
+        tone === "cobalt" && "bg-cobalt-deep text-paper",
         className,
       )}
       {...rest}

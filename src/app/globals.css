@@ -6,13 +6,14 @@
   paper      #FAF9F6  raised surfaces
   ink        #1E2227  charcoal text
   slate      #5A616B  secondary text
-  cobalt     #1F3C7A  İznik cobalt — primary actions & links
-  tile       #2B7F78  İznik turquoise — availability / success
-  tulip      #B4432F  tulip red — small accents, alerts
+  cobalt     #1D4FC4  İznik cobalt — primary actions & links
+  tile       #0B8577  İznik turquoise — availability / success
+  tulip      #D1442B  tulip red — accents, alerts
+  saffron    #E3A21A  saffron — highlights
 */
 
 @theme {
-  --color-limestone: #efece6;
+  --color-limestone: #f2efe8;
   --color-limestone-deep: #e4e0d8;
   --color-paper: #faf9f6;
   --color-ink: #1e2227;
@@ -22,15 +23,16 @@
   --color-line: #d9d4ca;
   --color-line-soft: #e7e3dc;
 
-  --color-cobalt: #1f3c7a;
-  --color-cobalt-deep: #152b5a;
-  --color-cobalt-soft: #e3e8f2;
-  --color-tile: #2b7f78;
-  --color-tile-soft: #dcefec;
-  --color-tulip: #b4432f;
-  --color-tulip-soft: #f6e2dc;
-  --color-saffron: #c48a1c;
-  --color-saffron-soft: #f7ecd4;
+  --color-cobalt: #1d4fc4;
+  --color-cobalt-deep: #163b96;
+  --color-cobalt-soft: #e1e9fb;
+  --color-tile: #0b8577;
+  --color-tile-bright: #14b8a6;
+  --color-tile-soft: #d4f3ee;
+  --color-tulip: #d1442b;
+  --color-tulip-soft: #fce4dd;
+  --color-saffron: #e3a21a;
+  --color-saffron-soft: #fdf0d2;
 
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-newsreader), ui-serif, Georgia, serif;

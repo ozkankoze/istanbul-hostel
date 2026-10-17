@@ -106,7 +106,7 @@ async function main() {
       { propertyId, key: "booking.autoNote", value: "Reservations are requests until confirmed by reception." },
       { propertyId, key: "transfer.priceIST", value: 45 },
       { propertyId, key: "transfer.priceSAW", value: 55 },
-      { propertyId, key: "brand.primaryColor", value: "#1F3C7A" },
+      { propertyId, key: "brand.primaryColor", value: "#1D4FC4" },
     ],
   });
 

@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/guest",
     display: "standalone",
     background_color: "#efece6",
-    theme_color: "#1f3c7a",
+    theme_color: "#1d4fc4",
     icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };
 }
