@@ -1,4 +1,4 @@
-export const locales = ["en", "bs", "tr"] as const;
+export const locales = ["en", "bs"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 export const LOCALE_COOKIE = "ih_locale";
@@ -6,14 +6,13 @@ export const LOCALE_COOKIE = "ih_locale";
 export const localeNames: Record<Locale, string> = {
   en: "English",
   bs: "Bosanski",
-  tr: "Türkçe",
 };
 
 export function isLocale(value: string | undefined | null): value is Locale {
   return !!value && (locales as readonly string[]).includes(value);
 }
 
-/** Localized JSON stored in the database: { en, bs, tr } */
+/** Localized JSON stored in the database: { en, bs } (older rows may also carry other keys) */
 export type LocalizedText = Partial<Record<Locale, string>>;
 
 export function pick(value: unknown, locale: Locale): string {

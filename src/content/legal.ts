@@ -26,17 +26,6 @@ export const privacy: Record<Locale, Doc> = {
       { heading: "Kolačići", body: ["Koristimo samo neophodne kolačiće: jedan za pamćenje jezika i, ako se prijavite u vodič za goste, jedan kolačić sesije. Ne koristimo reklamne kolačiće niti kolačiće za praćenje."] },
     ],
   },
-  tr: {
-    sections: [
-      { heading: "Biz kimiz", body: ["Bu web sitesi ve misafir rehberi Istanbul Hostel (\"biz\") tarafından işletilmektedir. Bu metin Medya 333 tarafından hazırlanmış demo metnidir; gerçek bir işletme buraya tüzel kişilik bilgilerini, adresini ve veri koruma irtibat bilgisini eklemelidir."] },
-      { heading: "Hangi verileri topluyoruz", body: ["Rezervasyon, tur, transfer veya iletişim talebi gönderdiğinizde adınızı, e-posta adresinizi, telefon numaranızı, ülkenizi, konaklama tarihlerinizi ve eklediğiniz notları alırız.", "Misafir rehberinde konaklamanızı doğruladığınızda rezervasyonunuzla bağlantılı, kısa süreli ve şifreli bir oturum çerezi saklarız.", "Online kart ödemesi almıyor ve kart bilgisi saklamıyoruz."] },
-      { heading: "Verileri neden kullanıyoruz", body: ["Taleplerinizi yanıtlamak ve yönetmek, odanızı hazırlamak, konaklamanız hakkında iletişim kurmak, Türkiye'deki yasal konaklama bildirim yükümlülüklerini yerine getirmek ve tesisimizin güvenliğini sağlamak için."] },
-      { heading: "Ne kadar süre saklıyoruz", body: ["Rezervasyon kayıtları Türk konaklama ve vergi mevzuatının gerektirdiği süre boyunca saklanır. İletişim mesajları ve geri bildirimler, bir rezervasyonun parçası değilse 24 ay sonra silinir."] },
-      { heading: "Kimlerle paylaşıyoruz", body: ["Yalnızca hostelin işleyişine yardımcı olan hizmet sağlayıcılarla (ör. barındırma sağlayıcımız ve talep ettiğiniz deneyimler için tur ortaklarımız) ve yasanın gerektirdiği durumlarda yetkili makamlarla. Verilerinizi asla satmayız."] },
-      { heading: "Haklarınız", body: ["6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve uygulanabildiği ölçüde AB GDPR kapsamında verilerinize erişme, düzeltilmesini veya silinmesini isteme ve işlenmesine itiraz etme hakkına sahipsiniz. İletişim sayfamızdaki e-posta adresine yazın."] },
-      { heading: "Çerezler", body: ["Yalnızca zorunlu çerezler kullanıyoruz: dil tercihinizi hatırlayan bir çerez ve misafir rehberine giriş yaparsanız bir oturum çerezi. Reklam veya izleme çerezi kullanılmaz."] },
-    ],
-  },
 };
 
 export const terms: Record<Locale, Doc> = {
@@ -60,17 +49,6 @@ export const terms: Record<Locale, Doc> = {
       { heading: "Kućni red", body: ["Sati tišine, zabrana pušenja i ostala pravila iz vodiča za goste važe za sve. Gostima koji ozbiljno ili ponovljeno krše pravila možemo prekinuti boravak bez povrata novca za preostale noći."] },
       { heading: "Ture i transferi", body: ["Doživljaji i transferi su zahtjevi dok ih ne potvrdimo. Neke organizuju partnerske kompanije čiji uslovi mogu važiti. Prikazane cijene su po osobi, osim ako je navedeno po grupi."] },
       { heading: "Odgovornost", body: ["Molimo koristite ormariće. Ne odgovaramo za vrijedne stvari ostavljene izvan njih, osim ako zakon ne propisuje drugačije."] },
-    ],
-  },
-  tr: {
-    sections: [
-      { heading: "Rezervasyon talepleri", body: ["Bu web sitesinde yapılan rezervasyonlar taleptir. Rezervasyon, ancak resepsiyon ekibimizden onay aldığınızda kesinleşir. O zamana kadar müsaitlik ve fiyatlar garanti edilmez."] },
-      { heading: "Ödeme", body: ["Online ödeme alınmaz. Onaylanan tutar varışta resepsiyonda kartla veya nakit ödenir. Varsa konaklama vergisi ayrıca tahsil edilir."] },
-      { heading: "İptal", body: ["Varış tarihinizden 48 saat öncesine kadar ücretsiz iptal edebilirsiniz. Daha geç iptallerde ve gelmeme durumunda ilk gece ücreti alınabilir."] },
-      { heading: "Giriş ve kimlik", body: ["Giriş 14.00'ten itibaren, çıkış 11.00'e kadardır. Türk mevzuatı gereği tüm misafirler girişte geçerli pasaport veya kimlik kartı göstermelidir. Yatakhane misafirleri 18 yaşından büyük olmalıdır."] },
-      { heading: "Ev kuralları", body: ["Sessiz saatler, sigara içmeme kuralı ve misafir rehberindeki diğer kurallar herkes için geçerlidir. Kuralları ciddi veya tekrarlı şekilde ihlal eden misafirlerin konaklaması, kalan geceler iade edilmeden sonlandırılabilir."] },
-      { heading: "Turlar ve transferler", body: ["Deneyimler ve transferler onaylanana kadar taleptir. Bazıları iş ortağı şirketler tarafından yürütülür ve onların koşulları geçerli olabilir. Gösterilen fiyatlar, grup başı belirtilmedikçe kişi başıdır."] },
-      { heading: "Sorumluluk", body: ["Lütfen size ayrılan dolapları kullanın. Kanunun aksini öngördüğü durumlar dışında, dolap dışında bırakılan değerli eşyalardan sorumlu değiliz."] },
     ],
   },
 };

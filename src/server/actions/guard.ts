@@ -24,7 +24,6 @@ export function localized(fd: FormData, name: string) {
   return {
     en: String(fd.get(`${name}.en`) ?? "").trim(),
     bs: String(fd.get(`${name}.bs`) ?? "").trim(),
-    tr: String(fd.get(`${name}.tr`) ?? "").trim(),
   };
 }
 

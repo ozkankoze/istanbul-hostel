@@ -73,7 +73,7 @@ const en = {
       { title: "Central, but on a quiet street", body: "Walk to Galata, Karaköy and the ferries, then sleep away from the late-night noise of İstiklal." },
       { title: "Beds built for real sleep", body: "Solid bunks with privacy curtains, thick mattresses, fresh linen and blackout blinds." },
       { title: "Breakfast on the terrace", body: "A simple Turkish breakfast with bread from the bakery down the street, served every morning." },
-      { title: "A guide in your pocket", body: "Scan the code in your room for Wi-Fi, house info, tours and requests — in English, Bosnian or Turkish." },
+      { title: "A guide in your pocket", body: "Scan the code at reception for Wi-Fi, house info, tours and requests — in English or Bosnian." },
       { title: "Easy to meet people", body: "Shared dinners, walking tours and a common room where conversations start on their own." },
       { title: "Book direct, pay at the desk", body: "Send a request online, we confirm by email, and you pay on arrival. No booking fees." },
     ],
@@ -269,7 +269,7 @@ const en = {
       { title: "Rooms for every kind of trip", body: "Mixed and female dorms with privacy curtains, plus private and deluxe rooms with their own bathrooms." },
       { title: "A social, safe atmosphere", body: "Shared dinners, walking tours and a rooftop terrace — with quiet hours and a team on site day and night." },
       { title: "Local knowledge", body: "A guest guide written by our staff, small-group tours and honest advice on where locals actually go." },
-      { title: "Simple, direct booking", body: "Request online in three languages, receive personal confirmation and pay at the desk with no hidden fees." },
+      { title: "Simple, direct booking", body: "Request online in English or Bosnian, receive personal confirmation and pay at the desk with no hidden fees." },
     ],
     valuesTitle: "How we work",
     values: [

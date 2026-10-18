@@ -31,7 +31,6 @@ export default async function PrintPoster() {
         <div className="mt-[12mm] w-[110mm] rounded-2xl border-[3px] border-ink p-[7mm] [&_svg]:h-auto [&_svg]:w-full" dangerouslySetInnerHTML={{ __html: svg }} />
         <div className="mt-[12mm] space-y-1.5 text-[17px] text-slate">
           <p>Dobrodošli! Skenirajte za Wi-Fi, doručak i pomoć.</p>
-          <p>Hoş geldiniz! Wi-Fi, kahvaltı ve yardım için okutun.</p>
         </div>
         {guide.config ? (
           <p className="mt-auto rounded-full bg-limestone px-6 py-2.5 text-[16px]">

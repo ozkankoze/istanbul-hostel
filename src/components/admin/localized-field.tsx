@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils";
 const LANGS = [
   { id: "en", label: "EN" },
   { id: "bs", label: "BS" },
-  { id: "tr", label: "TR" },
 ] as const;
 
-/** Edits a { en, bs, tr } value. Submits as name.en / name.bs / name.tr. */
+/** Edits a { en, bs } value. Submits as name.en / name.bs. */
 export function LocalizedField({
   name,
   label,

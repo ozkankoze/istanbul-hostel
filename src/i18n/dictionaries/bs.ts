@@ -75,7 +75,7 @@ const bs: Dictionary = {
       { title: "U centru, ali u mirnoj ulici", body: "Pješice do Galate, Karaköya i trajekata, a spavate daleko od noćne buke İstiklala." },
       { title: "Kreveti za pravi san", body: "Čvrsti kreveti na sprat sa zavjesama za privatnost, debeli dušeci, svježa posteljina i roletne za zamračivanje." },
       { title: "Doručak na terasi", body: "Jednostavan turski doručak sa hljebom iz pekare niz ulicu, svako jutro." },
-      { title: "Vodič u džepu", body: "Skenirajte kod u sobi za Wi-Fi, informacije o hostelu, ture i zahtjeve — na engleskom, bosanskom ili turskom." },
+      { title: "Vodič u džepu", body: "Skenirajte kod na recepciji za Wi-Fi, informacije o hostelu, ture i zahtjeve — na engleskom ili bosanskom." },
       { title: "Lako je upoznati ljude", body: "Zajedničke večere, pješačke ture i dnevni boravak u kojem razgovori počinju sami od sebe." },
       { title: "Rezervišite direktno, platite na recepciji", body: "Pošaljite zahtjev online, mi potvrđujemo e-mailom, a plaćate po dolasku. Bez naknada." },
     ],
@@ -271,7 +271,7 @@ const bs: Dictionary = {
       { title: "Sobe za svaku vrstu putovanja", body: "Mješovite i ženske spavaonice sa zavjesama za privatnost te privatne i deluxe sobe s vlastitim kupatilom." },
       { title: "Društvena i sigurna atmosfera", body: "Zajedničke večere, pješačke ture i krovna terasa — uz sate tišine i tim koji je tu danju i noću." },
       { title: "Lokalno znanje", body: "Vodič za goste koji je napisalo naše osoblje, ture u malim grupama i iskreni savjeti o tome gdje lokalci zaista idu." },
-      { title: "Jednostavna direktna rezervacija", body: "Pošaljite zahtjev online na tri jezika, dobijte ličnu potvrdu i platite na recepciji bez skrivenih troškova." },
+      { title: "Jednostavna direktna rezervacija", body: "Pošaljite zahtjev online na engleskom ili bosanskom, dobijte ličnu potvrdu i platite na recepciji bez skrivenih troškova." },
     ],
     valuesTitle: "Kako radimo",
     values: [

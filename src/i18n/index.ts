@@ -1,10 +1,9 @@
 import "server-only";
 import en, { type Dictionary, type PluralForms } from "./dictionaries/en";
 import bs from "./dictionaries/bs";
-import tr from "./dictionaries/tr";
 import type { Locale } from "./config";
 
-const dictionaries: Record<Locale, Dictionary> = { en, bs, tr };
+const dictionaries: Record<Locale, Dictionary> = { en, bs };
 
 export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale] ?? en;

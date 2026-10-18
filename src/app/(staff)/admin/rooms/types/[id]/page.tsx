@@ -19,7 +19,7 @@ export default async function RoomTypeEdit({ params }: PageProps<"/admin/rooms/t
       <AdminHeader
         back={{ href: "/admin/rooms", label: "Rooms & Beds" }}
         title={t ? pick(t.name, "en") : "New room type"}
-        description="Text is shown on the public website in English, Bosnian and Turkish. Untranslated fields fall back to English."
+        description="Text is shown on the public website in English and Bosnian. Untranslated fields fall back to English."
       />
       <Panel>
         <RoomTypeForm

@@ -10,7 +10,6 @@ export function pluralCategory(locale: Locale, n: number): keyof PluralForms {
     if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return "few";
     return "other";
   }
-  if (locale === "tr") return "other";
   return n === 1 ? "one" : "other";
 }
 

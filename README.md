@@ -49,7 +49,7 @@ Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → re
 
 | Yol | İçerik |
 |---|---|
-| `/en`, `/bs`, `/tr` | Genel web sitesi. İlk ziyarette dil ülkeye göre seçilir: BA/HR/RS/ME → Boşnakça, diğer herkes → İngilizce. Türkçe otomatik açılmaz, menüden seçilebilir; seçim hatırlanır. Mantık `src/proxy.ts` içinde. |
+| `/en`, `/bs`, `/tr` | Genel web sitesi. İlk ziyarette dil ülkeye göre seçilir: BA/HR/RS/ME → Boşnakça, diğer herkes → İngilizce. Seçim hatırlanır. Mantık `src/proxy.ts` içinde. |
 | `/{dil}/book` | Rezervasyon talebi akışı |
 | `/guest` | QR misafir rehberi — resepsiyondaki tek QR kod buraya yönlenir (dile göre yönlendirir) |
 | `/staff` | Housekeeping mobil uygulaması |
@@ -60,7 +60,7 @@ Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → re
 
 - **Stok ve müsaitlik** (`src/server/availability.ts`): Yatakhaneler yatak bazında, özel odalar oda bazında satılır. Müsaitlik = aktif ve engellenmemiş stok − çakışan *onaylı* tahsisler. Bekleyen talepler stok düşmez; onay anında `Serializable` bir transaction içinde gerçek yatak/oda atanır, böylece aynı son yatağı iki kişiye vermek mümkün değildir.
 - **Doluluk ve housekeeping ayrıdır**: Doluluk rezervasyon tahsislerinden hesaplanır; temizlik durumu odada ayrı tutulur ve her değişiklik `HousekeepingLog` tablosuna yazılır.
-- **Çok dillilik** (`src/i18n`): Arayüz metinleri tipli sözlüklerde (EN/BS/TR), veritabanı içerikleri `{ en, bs, tr }` JSON alanlarında. Çevrilmemiş alanlar İngilizceye düşer. Yönetim paneli İngilizcedir.
+- **Çok dillilik** (`src/i18n`): Arayüz metinleri tipli sözlüklerde (EN/BS), veritabanı içerikleri `{ en, bs }` JSON alanlarında. Türkçe kaldırıldı; eski `/tr` adresleri İngilizceye yönlenir. Çevrilmemiş alanlar İngilizceye düşer. Yönetim paneli İngilizcedir.
 - **Kimlik doğrulama** (`src/server/auth.ts`): bcrypt (cost 12), veritabanında hash'lenmiş oturum token'ları, httpOnly çerez, 15 dakikada 5 hatalı denemede kilit. Rol kontrolleri her sayfada ve her server action'da sunucu tarafında yapılır (`PERMISSIONS` tablosu). `proxy.ts` yalnızca iyimser yönlendirme yapar.
 - **Misafir doğrulama**: QR'daki oda numarası yetki vermez. Oda hizmetleri için rezervasyon referansı + soyad gerekir; başarılı doğrulama çıkış gününe kadar geçerli bir oturum açar.
 - **Denetim kaydı**: Önemli değişiklikler `AuditLog` tablosuna yazılır (Ayarlar → Audit log).

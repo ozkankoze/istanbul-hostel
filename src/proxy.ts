@@ -16,7 +16,6 @@ const BOSNIAN_LANGS = new Set(["bs", "hr", "sr", "sh", "cnr"]);
  * 2. their country (Vercel / Cloudflare geo headers) — BA, HR, RS, ME → Bosnian
  * 3. a Bosnian-family browser language (for visitors abroad or hosts without geo headers)
  * 4. English for everyone else.
- * Turkish is never picked automatically — guests can still choose it in the language menu.
  */
 function preferredLocale(request: NextRequest): Locale {
   const cookie = request.cookies.get(LOCALE_COOKIE)?.value;
@@ -52,6 +51,14 @@ export function proxy(request: NextRequest) {
   }
 
   const segment = pathname.split("/")[1];
+  // Turkish was retired: send old /tr links (and saved cookies) to English.
+  if (segment === "tr") {
+    const url = request.nextUrl.clone();
+    url.pathname = `/en${pathname.slice(3)}`;
+    const res = NextResponse.redirect(url, 308);
+    res.cookies.set(LOCALE_COOKIE, "en", { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
+    return res;
+  }
   if (isLocale(segment)) {
     // Remember an explicit choice so un-prefixed links (e.g. QR codes) keep it.
     const res = NextResponse.next();
