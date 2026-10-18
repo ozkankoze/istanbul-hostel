@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Istanbul Hostel mark: an arched doorway (a home) with the Bosphorus
- * waves and a low sun inside it.
- */
+/** Istanbul Hostel mark: a simple house with a chimney, an arched door and a round attic window. */
 export function LogoMark({ className, title }: { className?: string; title?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={cn("size-7", className)} role={title ? "img" : undefined} aria-hidden={title ? undefined : true}>
       {title ? <title>{title}</title> : null}
-      <path d="M6.5 28.5V14a9.5 9.5 0 0 1 19 0v14.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="16" cy="15" r="3" className="fill-tulip" />
-      <path d="M9.5 21.5c1.6-1.3 3.3-1.3 4.9 0s3.3 1.3 4.9 0 3.3-1.3 4.9 0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity=".9" />
-      <path d="M9.5 25.5c1.6-1.3 3.3-1.3 4.9 0s3.3 1.3 4.9 0 3.3-1.3 4.9 0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity=".55" />
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21.5 9.6V6.5h3v5.6" strokeWidth="2.2" />
+        <path d="M4.5 16 16 6l11.5 10" strokeWidth="2.4" />
+        <path d="M7.5 13.6V26.5h17V13.6" strokeWidth="2.4" />
+        <path d="M13.6 26.5v-5.2a2.4 2.4 0 0 1 4.8 0v5.2" strokeWidth="2.1" />
+      </g>
+      <circle cx="16" cy="12.6" r="1.9" className="fill-tulip" />
     </svg>
   );
 }
