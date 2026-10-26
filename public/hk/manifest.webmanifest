@@ -1,0 +1,22 @@
+{
+  "id": "/staff",
+  "name": "Istanbul Hostel Housekeeping",
+  "short_name": "Housekeeping",
+  "description": "Rooms, cleaning status and tasks for the housekeeping team.",
+  "start_url": "/staff?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1d4fc4",
+  "theme_color": "#1d4fc4",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "/hk/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/hk/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/hk/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "My tasks", "url": "/staff", "icons": [{ "src": "/hk/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Rooms", "url": "/staff?tab=rooms", "icons": [{ "src": "/hk/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

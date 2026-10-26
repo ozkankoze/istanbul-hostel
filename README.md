@@ -52,9 +52,15 @@ Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → re
 | `/en`, `/bs`, `/tr` | Genel web sitesi. İlk ziyarette dil ülkeye göre seçilir: BA/HR/RS/ME → Boşnakça, diğer herkes → İngilizce. Seçim hatırlanır. Mantık `src/proxy.ts` içinde. |
 | `/{dil}/book` | Rezervasyon talebi akışı |
 | `/guest` | QR misafir rehberi — resepsiyondaki tek QR kod buraya yönlenir (dile göre yönlendirir) |
-| `/staff` | Housekeeping mobil uygulaması |
+| `/staff` | Housekeeping mobil uygulaması — telefona yüklenebilir (PWA). Kurulum QR'ı: Admin → QR Code → Housekeeping app |
 | `/admin` | Yönetim paneli (11 bölüm) |
 | `/login` | Personel girişi |
+
+## Housekeeping uygulaması (telefona yükleme)
+
+`/staff` mağazasız kurulabilen bir uygulamadır (PWA): `public/hk/manifest.webmanifest`, ikonlar `public/hk/`, service worker `public/hk-sw.js`.
+Personel adresi telefonda açar, giriş yapar, **Install** (veya tarayıcı menüsü → *Uygulamayı yükle / Ana ekrana ekle*) der; ikon ana ekrana gelir ve tam ekran açılır.
+Sayfa açıkken 45 saniyede bir ve uygulamaya geri dönüldüğünde kendini yeniler; bağlantı yoksa uyarı ve çevrimdışı ekranı gösterir. Durum değişiklikleri her zaman sunucuya yazılır (çevrimdışı kayıt yapılmaz, ekip aynı veriyi görür).
 
 ## Mimari notlar
 

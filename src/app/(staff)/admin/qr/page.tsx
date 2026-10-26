@@ -22,6 +22,8 @@ export default async function QrPage() {
   });
   const [mainSvg, ...extraSvgs] = await Promise.all([reception, ...extras].map((c) => qrSvg(qrTargetUrl(c.path))));
   const target = qrTargetUrl("/guest").replace("?src=qr", "");
+  const staffUrl = qrTargetUrl("/staff").replace("?src=qr", "");
+  const staffSvg = await qrSvg(staffUrl);
 
   return (
     <>
@@ -66,6 +68,25 @@ export default async function QrPage() {
             <p className="mt-auto pt-6 text-[12.5px] text-mist">
               The code contains your <span className="font-mono">APP_URL</span>. Set it to your public domain before printing.
             </p>
+          </div>
+        </div>
+      </Panel>
+
+      <Panel className="mt-6" title="Housekeeping app" description="For staff only. Scanning this does not give access: each housekeeper signs in with their own account.">
+        <div className="grid gap-6 md:grid-cols-[160px_1fr]">
+          <div className="mx-auto w-full max-w-[160px] rounded-lg border border-line bg-white p-3 [&_svg]:h-auto [&_svg]:w-full" dangerouslySetInnerHTML={{ __html: staffSvg }} />
+          <div className="text-[14px]">
+            <p className="text-slate">
+              Opens <span className="font-mono">{staffUrl}</span>. Show this code to a new team member on their first day.
+            </p>
+            <ol className="mt-3 list-decimal space-y-1.5 pl-5">
+              <li>Scan the code with the phone camera and sign in.</li>
+              <li>
+                Tap <strong>Install</strong> on the banner, or open the browser menu (⋮) and choose <strong>Install app</strong> / <strong>Add to Home screen</strong>.
+              </li>
+              <li>The Housekeeping icon appears on the home screen and opens full screen, like any other app.</li>
+            </ol>
+            <p className="mt-3 text-[12.5px] text-mist">No app store needed. Updates arrive automatically; nothing to reinstall.</p>
           </div>
         </div>
       </Panel>

@@ -1,46 +1,60 @@
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { LogOut } from "lucide-react";
 import { LogoMark } from "@/components/brand/logo";
-import { Button } from "@/components/ui/button";
+import { StaffAppShell } from "@/components/staff/app-shell";
 import { ROLE_LABEL } from "@/lib/status";
 import { initials } from "@/lib/utils";
 import { logout } from "@/server/actions/auth";
 import { can, requirePermission } from "@/server/auth";
 
-export const metadata = { title: "Housekeeping" };
+export const metadata: Metadata = {
+  title: "Housekeeping",
+  manifest: "/hk/manifest.webmanifest",
+  applicationName: "Housekeeping",
+  appleWebApp: { capable: true, title: "Housekeeping", statusBarStyle: "black-translucent" },
+  icons: { icon: "/hk/icon.svg", apple: "/hk/apple-touch-icon.png" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1d4fc4",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export default async function StaffLayout({ children }: { children: React.ReactNode }) {
   const user = await requirePermission("staffApp");
   return (
     <div className="min-h-dvh">
-      <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4">
+      <header className="sticky top-0 z-30 bg-cobalt pt-[env(safe-area-inset-top)] text-paper shadow-sm">
+        <div className="mx-auto flex h-14 max-w-3xl items-center justify-between gap-3 px-4">
           <Link href="/staff" className="flex items-center gap-2">
-            <LogoMark className="size-6 text-cobalt" />
-            <span className="text-[15px] font-semibold">Housekeeping</span>
+            <LogoMark className="size-6 text-paper" />
+            <span className="text-[16px] font-semibold tracking-[-0.01em]">Housekeeping</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             {can(user.role, "overview") ? (
-              <Button asChild variant="ghost" size="sm">
-                <Link href="/admin">Admin</Link>
-              </Button>
+              <Link href="/admin" className="rounded-md px-2.5 py-1.5 text-[13px] font-medium text-paper/85 hover:bg-white/10 hover:text-paper">
+                Admin
+              </Link>
             ) : null}
-            <span className="hidden text-right text-[12.5px] leading-tight sm:block">
-              <span className="block font-medium">{user.name}</span>
-              <span className="text-slate">{ROLE_LABEL[user.role]}</span>
-            </span>
-            <span aria-hidden className="flex size-8 items-center justify-center rounded-full bg-cobalt-soft text-[12px] font-semibold text-cobalt">
+            <span
+              aria-label={`${user.name}, ${ROLE_LABEL[user.role]}`}
+              className="flex size-8 items-center justify-center rounded-full bg-white/15 text-[12px] font-semibold"
+            >
               {initials(user.name)}
             </span>
             <form action={logout}>
-              <Button variant="ghost" size="icon-sm" type="submit" aria-label="Sign out">
-                <LogOut aria-hidden />
-              </Button>
+              <button type="submit" aria-label="Sign out" className="rounded-md p-2 text-paper/80 hover:bg-white/10 hover:text-paper">
+                <LogOut className="size-[18px]" aria-hidden />
+              </button>
             </form>
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-4 pb-16 pt-6">{children}</main>
+      <StaffAppShell />
+      <main className="mx-auto max-w-3xl px-4 pb-[calc(96px+env(safe-area-inset-bottom))] pt-5">{children}</main>
     </div>
   );
 }
