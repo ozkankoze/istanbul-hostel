@@ -30,7 +30,7 @@ export type BookingCard = {
 
 type Row = Awaited<ReturnType<typeof db.reservation.findMany<{ include: typeof include }>>>[number];
 
-function toCard(r: Row): BookingCard {
+function toCard(r: Row, lang: "en" | "sr"): BookingCard {
   return {
     id: r.id,
     reference: r.reference,
@@ -43,7 +43,7 @@ function toCard(r: Row): BookingCard {
     nights: nightsBetween(r.checkIn, r.checkOut),
     guests: r.guests,
     units: r.units,
-    roomType: pick(r.roomType.name, "en"),
+    roomType: pick(r.roomType.name, lang),
     rooms: [...new Set(r.allocations.map((a) => a.room.number))].sort(),
     total: r.totalPrice.toString(),
     specialRequests: r.specialRequests,
@@ -52,7 +52,7 @@ function toCard(r: Row): BookingCard {
 }
 
 /** Front-desk view for the phone app: what needs a decision or a person at the desk today. */
-export async function getStaffBookings() {
+export async function getStaffBookings(lang: "en" | "sr" = "en") {
   const today = propertyToday();
   const [pending, arrivals, departures, inHouse, upcoming] = await Promise.all([
     db.reservation.findMany({ where: { status: "PENDING", checkOut: { gt: today } }, orderBy: { checkIn: "asc" }, include }),
@@ -67,10 +67,10 @@ export async function getStaffBookings() {
     }),
   ]);
   return {
-    pending: pending.map(toCard),
-    arrivals: arrivals.map(toCard),
-    departures: departures.map(toCard),
-    upcoming: upcoming.map(toCard),
+    pending: pending.map((r) => toCard(r, lang)),
+    arrivals: arrivals.map((r) => toCard(r, lang)),
+    departures: departures.map((r) => toCard(r, lang)),
+    upcoming: upcoming.map((r) => toCard(r, lang)),
     inHouse: inHouse + arrivals.length,
   };
 }

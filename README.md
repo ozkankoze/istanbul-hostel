@@ -49,7 +49,7 @@ Misafir rehberini denemek için: `/guest?room=101` → **Oda hizmetleri** → re
 
 | Yol | İçerik |
 |---|---|
-| `/en`, `/bs`, `/tr` | Genel web sitesi. İlk ziyarette dil ülkeye göre seçilir: BA/HR/RS/ME → Boşnakça, diğer herkes → İngilizce. Seçim hatırlanır. Mantık `src/proxy.ts` içinde. |
+| `/en`, `/sr` | Genel web sitesi. İlk ziyarette dil ülkeye göre seçilir: RS/BA/ME/HR → Sırpça (Latin), diğer herkes → İngilizce. Seçim hatırlanır. Eski `/bs` ve `/tr` adresleri yönlendirilir. Mantık `src/proxy.ts` içinde. |
 | `/{dil}/book` | Rezervasyon talebi akışı |
 | `/guest` | QR misafir rehberi — resepsiyondaki tek QR kod buraya yönlenir (dile göre yönlendirir) |
 | `/staff` | Personel uygulaması — telefona yüklenebilir (PWA). Housekeeping: Görevler + Odalar. Resepsiyon/müdür/admin: ek olarak Rezervasyonlar (talepleri onayla/reddet, bugün gelen/giden, check-out, ara/WhatsApp). Kurulum QR'ı: Admin → QR Code → Staff app |
@@ -66,7 +66,7 @@ Sayfa açıkken 45 saniyede bir ve uygulamaya geri dönüldüğünde kendini yen
 
 - **Stok ve müsaitlik** (`src/server/availability.ts`): Yatakhaneler yatak bazında, özel odalar oda bazında satılır. Müsaitlik = aktif ve engellenmemiş stok − çakışan *onaylı* tahsisler. Bekleyen talepler stok düşmez; onay anında `Serializable` bir transaction içinde gerçek yatak/oda atanır, böylece aynı son yatağı iki kişiye vermek mümkün değildir.
 - **Doluluk ve housekeeping ayrıdır**: Doluluk rezervasyon tahsislerinden hesaplanır; temizlik durumu odada ayrı tutulur ve her değişiklik `HousekeepingLog` tablosuna yazılır.
-- **Çok dillilik** (`src/i18n`): Arayüz metinleri tipli sözlüklerde (EN/BS), veritabanı içerikleri `{ en, bs }` JSON alanlarında. Türkçe kaldırıldı; eski `/tr` adresleri İngilizceye yönlenir. Çevrilmemiş alanlar İngilizceye düşer. Yönetim paneli İngilizcedir.
+- **Çok dillilik** (`src/i18n`): Arayüz metinleri tipli sözlüklerde (EN/SR), veritabanı içerikleri `{ en, sr }` JSON alanlarında (eski `bs` metinleri Sırpça için yedek olarak okunur). Personel uygulaması da EN/SR; metinler `src/components/staff/staff-text.ts`. Çevrilmemiş alanlar İngilizceye düşer. Yönetim paneli İngilizcedir.
 - **Kimlik doğrulama** (`src/server/auth.ts`): bcrypt (cost 12), veritabanında hash'lenmiş oturum token'ları, httpOnly çerez, 15 dakikada 5 hatalı denemede kilit. Rol kontrolleri her sayfada ve her server action'da sunucu tarafında yapılır (`PERMISSIONS` tablosu). `proxy.ts` yalnızca iyimser yönlendirme yapar.
 - **Misafir doğrulama**: QR'daki oda numarası yetki vermez. Oda hizmetleri için rezervasyon referansı + soyad gerekir; başarılı doğrulama çıkış gününe kadar geçerli bir oturum açar.
 - **Denetim kaydı**: Önemli değişiklikler `AuditLog` tablosuna yazılır (Ayarlar → Audit log).
@@ -91,7 +91,7 @@ Sayfa açıkken 45 saniyede bir ve uygulamaya geri dönüldüğünde kendini yen
    - **Neon (Postgres)** ekleyin → `DATABASE_URL` ve `DATABASE_URL_UNPOOLED` otomatik tanımlanır.
    - **Blob** ekleyin → `BLOB_READ_WRITE_TOKEN` otomatik tanımlanır (panelden yüklenen fotoğraflar için).
 4. **Settings → Environment Variables**: `SESSION_SECRET`, `APP_URL` (ör. `https://istanbul-hostel.vercel.app`), `DEMO_PASSWORD`, `DEMO_MODE=false`.
-5. **Deploy**. `vercel.json` derleme sırasında migration'ları uygular ve veritabanı boşsa demo verisini bir kez yükler; dolu veritabanına dokunmaz.
+5. **Deploy**. `vercel.json` derleme sırasında migration'ları uygular ve demo verisini yükler: veritabanı boşsa ya da demo içeriği eskiyse (`DEMO_CONTENT_VERSION`, `prisma/seed.ts`) yeniden yükler. Demo olarak işaretlenmemiş gerçek bir işletmeye asla dokunmaz.
 
 Notlar: Bölge `fra1` (Frankfurt) olarak ayarlıdır; Neon veritabanını da Frankfurt'ta oluşturun. Form hız sınırı sunucu örneği başına çalışır; yoğun trafikte Upstash Redis ile değiştirin.
 

@@ -73,7 +73,7 @@ const en = {
       { title: "Central, but on a quiet street", body: "Walk to Galata, Karaköy and the ferries, then sleep away from the late-night noise of İstiklal." },
       { title: "Beds built for real sleep", body: "Solid bunks with privacy curtains, thick mattresses, fresh linen and blackout blinds." },
       { title: "Breakfast on the terrace", body: "A simple Turkish breakfast with bread from the bakery down the street, served every morning." },
-      { title: "A guide in your pocket", body: "Scan the code at reception for Wi-Fi, house info, tours and requests — in English or Bosnian." },
+      { title: "A guide in your pocket", body: "Scan the code at reception for Wi-Fi, house info, tours and requests — in English or Serbian." },
       { title: "Easy to meet people", body: "Shared dinners, walking tours and a common room where conversations start on their own." },
       { title: "Book direct, pay at the desk", body: "Send a request online, we confirm by email, and you pay on arrival. No booking fees." },
     ],
@@ -243,13 +243,13 @@ const en = {
     title: "About us",
     lead: "A small, independent hostel built around good sleep, honest hospitality and the city outside the door.",
     intro:
-      "Istanbul Hostel is run by a team from Istanbul and Sarajevo who have spent years travelling, working in hospitality and hosting friends in this city. We designed the hostel we always wanted to find: central but calm, social without being loud, and run by people who actually know the neighbourhood.",
+      "Istanbul Hostel is run by a team from Istanbul and Belgrade who have spent years travelling, working in hospitality and hosting friends in this city. We designed the hostel we always wanted to find: central but calm, social without being loud, and run by people who actually know the neighbourhood.",
     factsTitle: "At a glance",
     facts: {
       rooms: "Rooms",
       beds: "Beds",
       languages: "Languages at reception",
-      languagesValue: "Turkish, Bosnian, English",
+      languagesValue: "English, Serbian, Turkish",
       reception: "Reception",
       receptionValue: "24/7",
       checkin: "Check-in / check-out",
@@ -259,7 +259,7 @@ const en = {
     storyTitle: "Our story",
     story: [
       "We opened in a restored Beyoğlu apartment building with a simple idea: a hostel should feel like staying with friends who happen to know the city very well.",
-      "Our team comes from Istanbul, Sarajevo and beyond. Between us we speak Turkish, Bosnian and English — enough to help you order the right breakfast, find the ferry that leaves in four minutes and avoid the restaurants built for tour buses.",
+      "Our team comes from Istanbul, Belgrade and beyond. Between us we speak English, Serbian and Turkish — enough to help you order the right breakfast, find the ferry that leaves in four minutes and avoid the restaurants built for tour buses.",
       "We keep the building simple and the details careful: good mattresses, clean bathrooms, honest prices and a rooftop where most friendships begin.",
     ],
     quote: "We measure a good stay by how well people sleep and how much of the real city they see.",
@@ -269,7 +269,7 @@ const en = {
       { title: "Rooms for every kind of trip", body: "Mixed and female dorms with privacy curtains, plus private and deluxe rooms with their own bathrooms." },
       { title: "A social, safe atmosphere", body: "Shared dinners, walking tours and a rooftop terrace — with quiet hours and a team on site day and night." },
       { title: "Local knowledge", body: "A guest guide written by our staff, small-group tours and honest advice on where locals actually go." },
-      { title: "Simple, direct booking", body: "Request online in English or Bosnian, receive personal confirmation and pay at the desk with no hidden fees." },
+      { title: "Simple, direct booking", body: "Request online in English or Serbian, receive personal confirmation and pay at the desk with no hidden fees." },
     ],
     valuesTitle: "How we work",
     values: [
@@ -282,7 +282,7 @@ const en = {
     teamIntro: "A small team you'll get to know by name.",
     team: [
       { name: "Elif Demir", role: "General manager", bio: "Fifteen years in Istanbul hospitality. Knows every ferry timetable by heart." },
-      { name: "Amar Hodžić", role: "Guest experience", bio: "Grew up in Sarajevo, moved to Istanbul for one summer and stayed. Runs our tours." },
+      { name: "Marko Jovanović", role: "Guest experience", bio: "Grew up in Belgrade, moved to Istanbul for one summer and stayed. Runs our tours." },
       { name: "Selin Kaya", role: "Front desk lead", bio: "Your first hello and your last goodbye. The person to ask about anything." },
       { name: "Ayşe Yılmaz", role: "Housekeeping lead", bio: "Keeps every room ready, checked and spotless — and notices the details." },
     ],

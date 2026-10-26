@@ -17,8 +17,8 @@ export function generateReference(prefix: string, length = 6) {
 
 export function formatMoney(value: number | string, currency = "EUR", locale = "en") {
   const n = typeof value === "string" ? Number(value) : value;
-  // Bosnian number data is incomplete in some browsers; Croatian uses the same conventions.
-  const tag = locale === "tr" ? "tr-TR" : locale === "bs" ? "hr-HR" : "en-GB";
+  // Serbian Latin number data is incomplete in some browsers; Croatian uses the same conventions.
+  const tag = locale === "tr" ? "tr-TR" : locale === "sr" ? "hr-HR" : "en-GB";
   return new Intl.NumberFormat(tag, {
     style: "currency",
     currency,
@@ -27,26 +27,26 @@ export function formatMoney(value: number | string, currency = "EUR", locale = "
 }
 
 export function intlLocale(locale: string) {
-  return locale === "tr" ? "tr-TR" : locale === "bs" ? "bs-BA" : "en-GB";
+  return locale === "tr" ? "tr-TR" : locale === "sr" ? "sr-Latn-RS" : "en-GB";
 }
 
 const DAYS: Record<string, string[]> = {
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   tr: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"],
-  bs: ["ned", "pon", "uto", "sri", "čet", "pet", "sub"],
+  sr: ["ned", "pon", "uto", "sre", "čet", "pet", "sub"],
 };
 const MONTHS: Record<string, string[]> = {
   en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   enLong: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   tr: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
   trLong: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-  bs: ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"],
-  bsLong: ["januar", "februar", "mart", "april", "maj", "juni", "juli", "august", "septembar", "oktobar", "novembar", "decembar"],
+  sr: ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "avg", "sep", "okt", "nov", "dec"],
+  srLong: ["januar", "februar", "mart", "april", "maj", "jun", "jul", "avgust", "septembar", "oktobar", "novembar", "decembar"],
 };
 
 /**
  * Deterministic date formatting. Browser and Node ICU data differ slightly
- * (and Bosnian is incomplete in some browsers), which would cause hydration
+ * (and Serbian Latin is incomplete in some browsers), which would cause hydration
  * mismatches, so we build the strings ourselves.
  */
 export function formatDateParts(
@@ -67,7 +67,7 @@ export function formatDateParts(
     weekday: "short",
   }).formatToParts(d);
   const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
-  const loc = locale === "tr" || locale === "bs" ? locale : "en";
+  const loc = locale === "tr" || locale === "sr" ? locale : "en";
   const day = Number(get("day"));
   const month = Number(get("month")) - 1;
   const year = get("year");
@@ -80,7 +80,7 @@ export function formatDateParts(
   const withMonth = opts.month !== undefined;
 
   let out: string;
-  if (loc === "bs") {
+  if (loc === "sr") {
     out = withMonth && longMonth ? `${day}. ${monthName}` : `${day}. ${month + 1}.`;
     if (withYear) out += ` ${year}.`;
   } else if (loc === "tr") {

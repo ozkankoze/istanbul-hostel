@@ -1,6 +1,6 @@
 /* Demonstration content for Istanbul Hostel. Everything here is sample data. */
 
-export const L = (en: string, bs: string, tr: string) => ({ en, bs, tr });
+export const L = (en: string, sr: string, tr: string) => ({ en, sr, tr });
 
 export const roomTypes = [
   {
@@ -11,15 +11,15 @@ export const roomTypes = [
     basePrice: 18,
     sizeSqm: 24,
     sortOrder: 1,
-    name: L("Mixed Dormitory", "Mješovita spavaonica", "Karma Yatakhane"),
+    name: L("Mixed Dormitory", "Mešovita spavaonica", "Karma Yatakhane"),
     summary: L(
       "Six solid bunks with curtains, lockers and a window onto the street.",
-      "Šest čvrstih kreveta na sprat sa zavjesama, ormarićima i prozorom na ulicu.",
+      "Šest čvrstih kreveta na sprat sa zavesama, ormarićima i prozorom ka ulici.",
       "Perdeli altı sağlam ranza, dolaplar ve sokağa bakan bir pencere.",
     ),
     description: L(
       "Our most social room. Each bunk has its own privacy curtain, reading light, power and USB outlets, and a full-size locker that fits a backpack. The room shares a bathroom block on the same floor, cleaned three times a day. Bed linen and a towel are included.",
-      "Naša najdruštvenija soba. Svaki krevet ima vlastitu zavjesu za privatnost, lampu za čitanje, utičnicu i USB te veliki ormarić u koji stane ranac. Soba dijeli kupatila na istom spratu, koja se čiste tri puta dnevno. Posteljina i peškir su uključeni.",
+      "Naša najdruštvenija soba. Svaki krevet ima sopstvenu zavesu za privatnost, lampu za čitanje, utičnicu i USB priključak, kao i veliki ormarić u koji staje ranac. Soba koristi zajednička kupatila na istom spratu, koja se čiste tri puta dnevno. Posteljina i peškir su uključeni.",
       "En sosyal odamız. Her ranzanın kendi gizlilik perdesi, okuma lambası, prizi ve USB girişi, sırt çantası sığan büyük bir dolabı var. Oda, aynı kattaki ve günde üç kez temizlenen ortak banyoları kullanır. Çarşaf ve havlu dahildir.",
     ),
     bedSummary: L("3 bunk beds (6 beds)", "3 kreveta na sprat (6 kreveta)", "3 ranza (6 yatak)"),
@@ -37,12 +37,12 @@ export const roomTypes = [
     name: L("Female Dormitory", "Ženska spavaonica", "Kadın Yatakhanesi"),
     summary: L(
       "A calmer four-bed room for women, with a vanity mirror and hair dryer.",
-      "Mirnija soba s četiri kreveta za žene, s ogledalom i fenom.",
+      "Mirnija četvorokrevetna soba za žene, sa ogledalom i fenom.",
       "Kadınlar için makyaj aynası ve saç kurutma makinesi olan daha sakin dört yataklı oda.",
     ),
     description: L(
       "Four bunks in a bright, quiet room reserved for women travellers. Every bed has a curtain, reading light and locker. You'll also find a vanity mirror, a hair dryer and a small shelf for toiletries. Shared bathrooms are on the same floor.",
-      "Četiri kreveta na sprat u svijetloj, mirnoj sobi namijenjenoj putnicama. Svaki krevet ima zavjesu, lampu za čitanje i ormarić. Tu su i ogledalo, fen i mala polica za kozmetiku. Zajednička kupatila su na istom spratu.",
+      "Četiri kreveta na sprat u svetloj, mirnoj sobi namenjenoj putnicama. Svaki krevet ima zavesu, lampu za čitanje i ormarić. Tu su i ogledalo, fen i mala polica za kozmetiku. Zajednička kupatila su na istom spratu.",
       "Kadın gezginlere ayrılmış aydınlık ve sakin bir odada dört ranza. Her yatakta perde, okuma lambası ve dolap var. Ayrıca makyaj aynası, saç kurutma makinesi ve banyo ürünleri için küçük bir raf bulunur. Ortak banyolar aynı kattadır.",
     ),
     bedSummary: L("2 bunk beds (4 beds)", "2 kreveta na sprat (4 kreveta)", "2 ranza (4 yatak)"),
@@ -60,12 +60,12 @@ export const roomTypes = [
     name: L("Private Double Room", "Privatna dvokrevetna soba", "Özel Çift Kişilik Oda"),
     summary: L(
       "Your own room with a double bed and private bathroom.",
-      "Vlastita soba s bračnim krevetom i vlastitim kupatilom.",
+      "Sopstvena soba sa bračnim krevetom i sopstvenim kupatilom.",
       "Çift kişilik yatak ve özel banyolu size ait bir oda.",
     ),
     description: L(
       "A simple, well-made private room for one or two. Double bed with a quality mattress, private shower room, a small desk and blackout blinds. Breakfast on the terrace is included, and you still get the whole social side of the hostel downstairs.",
-      "Jednostavna, kvalitetno uređena privatna soba za jednu ili dvije osobe. Bračni krevet s kvalitetnim dušekom, vlastito kupatilo s tušem, mali sto i roletne za zamračivanje. Doručak na terasi je uključen, a društveni dio hostela je odmah ispod.",
+      "Jednostavna, kvalitetno uređena privatna soba za jednu ili dve osobe. Bračni krevet sa kvalitetnim dušekom, sopstveno kupatilo sa tušem, mali radni sto i roletne za zamračivanje. Doručak na terasi je uključen, a ceo društveni život hostela vam je odmah ispod.",
       "Bir veya iki kişi için sade, özenle hazırlanmış bir özel oda. Kaliteli yataklı çift kişilik yatak, özel duş odası, küçük bir masa ve karartma perdeleri. Terasta kahvaltı dahildir; hostelin sosyal tarafı da hemen aşağıda.",
     ),
     bedSummary: L("1 double bed", "1 bračni krevet", "1 çift kişilik yatak"),
@@ -83,12 +83,12 @@ export const roomTypes = [
     name: L("Deluxe Private Room", "Deluxe privatna soba", "Deluxe Özel Oda"),
     summary: L(
       "Top-floor room with a queen bed, city view and a small balcony.",
-      "Soba na zadnjem spratu s velikim krevetom, pogledom na grad i malim balkonom.",
+      "Soba na poslednjem spratu sa velikim bračnim krevetom, pogledom na grad i malim balkonom.",
       "Şehir manzaralı, küçük balkonlu ve queen yataklı en üst kat odası.",
     ),
     description: L(
       "Our best rooms, on the fourth floor. A queen-size bed, a proper work desk, a rain shower and a small balcony looking across the rooftops towards the Golden Horn. Comes with a kettle, Turkish tea and coffee, and late check-out on request.",
-      "Naše najbolje sobe, na četvrtom spratu. Veliki krevet, pravi radni sto, tuš s efektom kiše i mali balkon s pogledom preko krovova prema Zlatnom rogu. Uključeni su kuhalo, turski čaj i kafa, a kasna odjava je moguća na upit.",
+      "Naše najbolje sobe, na četvrtom spratu. Veliki bračni krevet, pravi radni sto, tuš sa efektom kiše i mali balkon sa pogledom preko krovova ka Zlatnom rogu. Uključeni su kuvalo za vodu, turski čaj i kafa, a kasna odjava je moguća na zahtev.",
       "Dördüncü kattaki en iyi odalarımız. Queen yatak, gerçek bir çalışma masası, yağmur duşu ve çatıların üzerinden Haliç'e bakan küçük bir balkon. Su ısıtıcı, Türk çayı ve kahvesi dahildir; talep üzerine geç çıkış yapılabilir.",
     ),
     bedSummary: L("1 queen bed", "1 veliki bračni krevet", "1 queen yatak"),
@@ -117,10 +117,10 @@ export const experiences = [
   {
     slug: "bosphorus-cruise",
     title: L("Bosphorus Cruise", "Krstarenje Bosforom", "Boğaz Turu"),
-    summary: L("Explore Istanbul from the water.", "Istražite Istanbul s vode.", "İstanbul'u denizden keşfedin."),
+    summary: L("Explore Istanbul from the water.", "Istražite Istanbul sa vode.", "İstanbul'u denizden keşfedin."),
     description: L(
       "We walk together to the Karaköy pier and take a two-hour boat up the Bosphorus at golden hour — past Dolmabahçe Palace, the wooden yalı mansions of Arnavutköy and under the bridge to Rumeli Hisarı. Tea is served on board; bring a jacket, it gets breezy.",
-      "Zajedno šetamo do pristaništa Karaköy i plovimo dva sata Bosforom u zlatnom satu — pored palače Dolmabahçe, drvenih jalija u Arnavutköyu i ispod mosta do Rumeli Hisara. Na brodu se služi čaj; ponesite jaknu, zna biti vjetrovito.",
+      "Zajedno šetamo do pristaništa Karaköy i u zlatni čas plovimo dva sata Bosforom — pored palate Dolmabahçe, drvenih vila (jalija) u Arnavutköyu i ispod mosta do tvrđave Rumeli Hisar. Na brodu se služi čaj; ponesite jaknu, ume da bude vetrovito.",
       "Birlikte Karaköy iskelesine yürüyor ve altın saatte Boğaz'da iki saatlik bir tekne turuna çıkıyoruz — Dolmabahçe Sarayı'nın, Arnavutköy'ün ahşap yalılarının önünden geçip köprünün altından Rumeli Hisarı'na. Teknede çay ikram edilir; ceket getirin, rüzgârlı olabilir.",
     ),
     meetingPoint: L("Hostel reception", "Recepcija hostela", "Hostel resepsiyonu"),
@@ -136,15 +136,15 @@ export const experiences = [
   },
   {
     slug: "old-city-walking-tour",
-    title: L("Old City Walking Tour", "Pješačka tura kroz Stari grad", "Tarihi Yarımada Yürüyüş Turu"),
+    title: L("Old City Walking Tour", "Pešačka tura kroz Stari grad", "Tarihi Yarımada Yürüyüş Turu"),
     summary: L(
       "Discover Sultanahmet, Hagia Sophia and historic Istanbul.",
-      "Otkrijte Sultanahmet, Aja Sofiju i historijski Istanbul.",
+      "Otkrijte Sultanahmet, Aja Sofiju i istorijski Istanbul.",
       "Sultanahmet'i, Ayasofya'yı ve tarihi İstanbul'u keşfedin.",
     ),
     description: L(
       "Three unhurried hours through Byzantine and Ottoman Istanbul with a licensed local guide: the Hippodrome, Hagia Sophia, the Blue Mosque, the Basilica Cistern from above and the back streets to the Grand Bazaar. Entry tickets are not included. Wear comfortable shoes and bring a scarf for mosque visits.",
-      "Tri neužurbana sata kroz bizantski i osmanski Istanbul s licenciranim lokalnim vodičem: Hipodrom, Aja Sofija, Plava džamija, Cisterna i sporedne uličice do Velikog bazara. Ulaznice nisu uključene. Obujte udobnu obuću i ponesite maramu za posjetu džamijama.",
+      "Tri opuštena sata kroz vizantijski i osmanski Istanbul sa licenciranim lokalnim vodičem: Hipodrom, Aja Sofija, Plava džamija, pogled odozgo na Cisternu Bazilika i sporedne uličice do Velikog bazara. Ulaznice nisu uključene. Nosite udobnu obuću i ponesite maramu za posetu džamijama.",
       "Lisanslı yerel bir rehberle Bizans ve Osmanlı İstanbul'unda acelesiz üç saat: Hipodrom, Ayasofya, Sultanahmet Camii, Yerebatan Sarnıcı ve Kapalıçarşı'ya uzanan ara sokaklar. Giriş biletleri dahil değildir. Rahat ayakkabı giyin ve cami ziyaretleri için bir eşarp getirin.",
     ),
     meetingPoint: L("Hostel reception (we take the T1 tram together)", "Recepcija hostela (zajedno idemo tramvajem T1)", "Hostel resepsiyonu (T1 tramvayına birlikte biniyoruz)"),
@@ -164,7 +164,7 @@ export const experiences = [
     summary: L("Explore local cuisine and traditional food.", "Upoznajte lokalnu kuhinju i tradicionalna jela.", "Yerel mutfağı ve geleneksel lezzetleri keşfedin."),
     description: L(
       "An evening of eating your way across the Bosphorus: we take the ferry to Kadıköy's market streets for meze, pickles, kokoreç or lahmacun, a proper kebab, and finish with baklava and Turkish tea. Vegetarian options on request — tell us when you book. All tastings are included.",
-      "Večer degustacije s obje strane Bosfora: trajektom idemo do pijačnih ulica Kadıköya na meze, turšiju, kokoreç ili lahmacun, pravi kebab, a završavamo baklavom i turskim čajem. Vegetarijanske opcije na upit — javite nam pri rezervaciji. Sve degustacije su uključene.",
+      "Veče degustacije sa obe strane Bosfora: trajektom idemo do pijačnih ulica Kadıköya na meze, turšiju, kokoreç ili lahmacun i pravi kebab, a završavamo baklavom i turskim čajem. Vegetarijanske opcije na zahtev — javite nam prilikom rezervacije. Sve degustacije su uključene.",
       "Boğaz'ın iki yakasında lezzet dolu bir akşam: vapurla Kadıköy çarşısına geçip meze, turşu, kokoreç ya da lahmacun, gerçek bir kebap tadıyor, baklava ve Türk çayıyla bitiriyoruz. Vejetaryen seçenekler talep üzerine — rezervasyonda belirtin. Tüm tadımlar dahildir.",
     ),
     meetingPoint: L("Karaköy ferry pier, by the ticket machines", "Pristanište Karaköy, kod automata za karte", "Karaköy vapur iskelesi, bilet makinelerinin yanı"),
@@ -184,7 +184,7 @@ export const experiences = [
     summary: L("Private transportation to and from the hostel.", "Privatni prevoz do i od hostela.", "Hostele özel gidiş-dönüş ulaşım."),
     description: L(
       "A licensed driver meets you at arrivals with a name sign and drives you straight to our door — useful for late flights and heavy luggage. Price is per car (up to 4 passengers with luggage) from Istanbul Airport; Sabiha Gökçen is slightly more. Tell us your flight number and we track delays.",
-      "Licencirani vozač vas dočekuje u dolaznom terminalu s natpisom i vozi direktno do naših vrata — korisno za kasne letove i težak prtljag. Cijena je po vozilu (do 4 putnika s prtljagom) s aerodroma Istanbul; Sabiha Gökçen je malo skuplji. Javite nam broj leta i pratimo kašnjenja.",
+      "Licencirani vozač vas dočekuje u dolaznom terminalu sa tablom sa vašim imenom i vozi vas pravo do naših vrata — korisno za kasne letove i težak prtljag. Cena je po vozilu (do 4 putnika sa prtljagom) sa aerodroma Istanbul; sa aerodroma Sabiha Gökçen je nešto skuplje. Javite nam broj leta i pratićemo eventualna kašnjenja.",
       "Lisanslı bir şoför sizi gelen yolcu salonunda isim tabelasıyla karşılar ve doğrudan kapımıza getirir — geç uçuşlar ve ağır bagajlar için idealdir. Fiyat İstanbul Havalimanı'ndan araç başınadır (bagajla en fazla 4 yolcu); Sabiha Gökçen biraz daha pahalıdır. Uçuş numaranızı bildirin, rötarları takip ederiz.",
     ),
     meetingPoint: L("Airport arrivals hall", "Dolazni terminal aerodroma", "Havalimanı gelen yolcu salonu"),
@@ -204,10 +204,10 @@ export const experiences = [
     summary: L("Meet fellow travellers and discover Istanbul nightlife.", "Upoznajte druge putnike i otkrijte noćni život Istanbula.", "Diğer gezginlerle tanışın ve İstanbul'un gece hayatını keşfedin."),
     description: L(
       "Starts with a drink on our rooftop, then three bars and a club around Karaköy and Beyoğlu with one of our team. Includes a welcome drink at each stop and skip-the-line entry to the last venue. 18+ only; bring ID. We look after each other and always get everyone home.",
-      "Počinje pićem na našoj terasi, zatim tri bara i klub oko Karaköya i Beyoğlua s nekim iz našeg tima. Uključeno je piće dobrodošlice na svakoj lokaciji i ulaz bez čekanja na posljednjem mjestu. Samo 18+; ponesite ličnu kartu. Pazimo jedni na druge i uvijek svi stignu kući.",
+      "Počinje pićem na našoj krovnoj terasi, a zatim slede tri bara i klub oko Karaköya i Beyoğlua, uz nekog iz našeg tima. Uključeno je piće dobrodošlice na svakoj lokaciji i ulaz bez čekanja u poslednji lokal. Samo za punoletne (18+); ponesite ličnu kartu. Pazimo jedni na druge i uvek se pobrinemo da svi stignu kući.",
       "Terasımızda bir içkiyle başlar, ardından ekibimizden biriyle Karaköy ve Beyoğlu'nda üç bar ve bir kulüp. Her durakta karşılama içeceği ve son mekâna sırasız giriş dahildir. Yalnızca 18 yaş üstü; kimliğinizi getirin. Birbirimize göz kulak oluruz ve herkesi eve ulaştırırız.",
     ),
-    meetingPoint: L("Hostel rooftop terrace", "Terasa hostela", "Hostel çatı terası"),
+    meetingPoint: L("Hostel rooftop terrace", "Krovna terasa hostela", "Hostel çatı terası"),
     durationMinutes: 240,
     price: 15,
     priceUnit: "PERSON",
@@ -230,7 +230,7 @@ export const places = [
     mapQuery: "Galata Tower Istanbul",
     description: L(
       "The medieval stone tower above our neighbourhood. Go at opening time to skip the queue, or just admire it from the square with a simit.",
-      "Srednjovjekovna kamena kula iznad naše četvrti. Dođite u vrijeme otvaranja da izbjegnete red ili joj se divite s trga uz simit.",
+      "Srednjovekovna kamena kula iznad naše četvrti. Dođite u vreme otvaranja da izbegnete red ili joj se divite sa trga uz simit.",
       "Mahallemizin üzerindeki ortaçağ taş kulesi. Kuyruğa girmemek için açılış saatinde gidin ya da meydanda simit eşliğinde seyredin.",
     ),
   },
@@ -244,7 +244,7 @@ export const places = [
     transitNote: L("15 min on the T1 tram from Karaköy", "15 min tramvajem T1 iz Karaköya", "Karaköy'den T1 tramvayıyla 15 dk"),
     description: L(
       "Fifteen centuries of history under one dome. Dress modestly and avoid Friday midday prayers.",
-      "Petnaest stoljeća historije pod jednom kupolom. Obucite se skromno i izbjegavajte petak u vrijeme podnevske molitve.",
+      "Petnaest vekova istorije pod jednom kupolom. Obucite se pristojno i izbegavajte petak u vreme podnevne molitve.",
       "Tek bir kubbe altında on beş asırlık tarih. Kapalı giyinin ve cuma öğle namazı saatinden kaçının.",
     ),
   },
@@ -258,7 +258,7 @@ export const places = [
     transitNote: L("T1 tram to Beyazıt–Kapalıçarşı", "Tramvaj T1 do Beyazıt–Kapalıçarşı", "T1 tramvayıyla Beyazıt–Kapalıçarşı"),
     description: L(
       "Sixty-odd covered streets of lamps, leather and carpets. Haggling is expected — start around half the asking price. Closed on Sundays.",
-      "Šezdesetak natkrivenih ulica s lampama, kožom i ćilimima. Cjenkanje se podrazumijeva — počnite od otprilike pola tražene cijene. Nedjeljom zatvoreno.",
+      "Šezdesetak natkrivenih ulica sa lampama, kožom i ćilimima. Cenkanje se podrazumeva — počnite od otprilike pola tražene cene. Nedeljom zatvoreno.",
       "Lambalar, deri ve halılarla dolu altmış kadar kapalı sokak. Pazarlık beklenir — istenen fiyatın yarısından başlayın. Pazar günleri kapalıdır.",
     ),
   },
@@ -271,7 +271,7 @@ export const places = [
     mapQuery: "Spice Bazaar Istanbul",
     description: L(
       "Walk across the Galata Bridge for sumac, pul biber and lokum. The side streets outside are cheaper and more fun.",
-      "Pređite most Galata po sumak, pul biber i lokum. Sporedne ulice vani su jeftinije i zanimljivije.",
+      "Pređite peške most Galata po sumak, pul biber i ratluk. Okolne sporedne ulice su jeftinije i zanimljivije.",
       "Sumak, pul biber ve lokum için Galata Köprüsü'nü yürüyerek geçin. Dışarıdaki ara sokaklar daha ucuz ve daha eğlenceli.",
     ),
   },
@@ -285,7 +285,7 @@ export const places = [
     transitNote: L("25 min by bus along the Golden Horn", "25 min autobusom uz Zlatni rog", "Haliç boyunca otobüsle 25 dk"),
     description: L(
       "Steep streets of painted houses, antique shops and old churches and synagogues. Go on a weekday morning for quiet streets.",
-      "Strme ulice s obojenim kućama, antikvarnicama, starim crkvama i sinagogama. Idite radnim danom ujutro kad su ulice mirne.",
+      "Strme ulice sa šarenim kućama, antikvarnicama, starim crkvama i sinagogama. Idite radnim danom ujutru, kada su ulice mirne.",
       "Renkli evler, antikacılar, eski kiliseler ve sinagoglarla dolu dik sokaklar. Sakin sokaklar için hafta içi sabah gidin.",
     ),
   },
@@ -299,7 +299,7 @@ export const places = [
     transitNote: L("20 min ferry from Karaköy pier", "20 min trajektom iz Karaköya", "Karaköy iskelesinden vapurla 20 dk"),
     description: L(
       "Take the ferry for the best cheap view in the city. Kadıköy's market streets are for eating; Moda's seafront is for sunset.",
-      "Trajekt je najjeftiniji najljepši pogled u gradu. Pijačne ulice Kadıköya su za jelo, a obala Mode za zalazak sunca.",
+      "Sedite na trajekt — to je najjeftiniji, a najlepši pogled u gradu. Pijačne ulice Kadıköya su za jelo, a šetalište u Modi za zalazak sunca.",
       "Şehrin en ucuz ve en güzel manzarası için vapura binin. Kadıköy çarşısı yemek için, Moda sahili gün batımı için.",
     ),
   },
@@ -312,7 +312,7 @@ export const places = [
     mapQuery: "Karaköy Istanbul",
     description: L(
       "Our waterfront: street art, third-wave coffee, old warehouses turned galleries and fish sandwiches by the pier.",
-      "Naša obala: ulična umjetnost, specijalitet kafe, stara skladišta pretvorena u galerije i sendviči s ribom kod pristaništa.",
+      "Naša obala: ulična umetnost, kafa „trećeg talasa“, stara skladišta pretvorena u galerije i sendviči sa ribom kod pristaništa.",
       "Sahilimiz: sokak sanatı, üçüncü dalga kahve, galeriye dönüşmüş eski depolar ve iskele yanında balık ekmek.",
     ),
   },
@@ -325,7 +325,7 @@ export const places = [
     mapQuery: "lokanta Karaköy Istanbul",
     description: L(
       "Point at what looks good in the steam trays: beans, stuffed peppers, rice and stews. Lunch for the price of a coffee elsewhere. Ask reception for today's pick.",
-      "Pokažite na ono što vam izgleda dobro: grah, punjene paprike, pilav i variva. Ručak po cijeni kafe drugdje. Pitajte recepciju za današnju preporuku.",
+      "Pokažite na ono što vam izgleda dobro u posudama na pultu: pasulj, punjene paprike, pilav i variva. Ručak po ceni kafe na drugim mestima. Pitajte recepciju za današnju preporuku.",
       "Tezgâhta iyi görünene işaret edin: kuru fasulye, biber dolması, pilav ve sulu yemekler. Başka yerde bir kahve fiyatına öğle yemeği. Günün önerisini resepsiyona sorun.",
     ),
   },
@@ -339,7 +339,7 @@ export const places = [
     transitNote: L("20 min ferry", "20 min trajektom", "Vapurla 20 dk"),
     description: L(
       "The market streets around the fish stalls are full of small places serving regional Anatolian dishes. Go hungry and share plates.",
-      "Pijačne ulice oko ribarnica pune su malih restorana s regionalnim anadolskim jelima. Dođite gladni i dijelite tanjire.",
+      "Pijačne ulice oko ribarnica pune su malih restorana sa regionalnim anadolskim jelima. Dođite gladni i delite tanjire.",
       "Balıkçıların çevresindeki çarşı sokakları bölgesel Anadolu yemekleri sunan küçük lokantalarla dolu. Aç gidin ve tabakları paylaşın.",
     ),
   },
@@ -352,7 +352,7 @@ export const places = [
     mapQuery: "Turkish coffee Beyoğlu Istanbul",
     description: L(
       "Thick, sweet-or-not coffee cooked in a copper pot and served with a glass of water. Ask for 'orta' if you want it medium sweet.",
-      "Gusta kafa kuhana u bakrenoj džezvi i servirana uz čašu vode. Tražite 'orta' ako je želite srednje slatku.",
+      "Gusta kafa, zaslađena ili ne, kuvana u bakarnoj džezvi i služena uz čašu vode. Tražite 'orta' ako je želite srednje slatku.",
       "Bakır cezvede pişen, yanında bir bardak suyla gelen koyu kahve. Orta şekerli istiyorsanız 'orta' deyin.",
     ),
   },
@@ -365,7 +365,7 @@ export const places = [
     mapQuery: "simit Galata Istanbul",
     description: L(
       "Grab a warm simit and çay for breakfast on the go — the bakeries around Galata start before sunrise.",
-      "Uzmite topli simit i čaj za doručak u hodu — pekare oko Galate rade prije izlaska sunca.",
+      "Uzmite topao simit i čaj za doručak u hodu — pekare oko Galate rade i pre izlaska sunca.",
       "Ayaküstü kahvaltı için sıcak bir simit ve çay alın — Galata'nın fırınları gün doğmadan açılır.",
     ),
   },
@@ -378,7 +378,7 @@ export const places = [
     mapQuery: "Nevizade Sokak Istanbul",
     description: L(
       "Long tables, rakı, meze and live fasıl music. Start late (after 9pm) and order slowly — the evening is the point.",
-      "Dugi stolovi, rakija, meze i fasıl muzika uživo. Počnite kasno (poslije 21h) i naručujte polako — večer je poenta.",
+      "Dugački stolovi, rakı, meze i fasıl muzika uživo. Počnite kasno (posle 21h) i naručujte polako — poenta je u samom večernjem uživanju.",
       "Uzun masalar, rakı, meze ve canlı fasıl. Geç başlayın (21.00'den sonra) ve yavaş sipariş verin — mesele akşamın kendisi.",
     ),
   },
@@ -387,30 +387,30 @@ export const places = [
 export const guideItems = [
   // Facilities
   { section: "FACILITY" as const, icon: "chef-hat", sortOrder: 1, title: L("Shared kitchen", "Zajednička kuhinja", "Ortak mutfak"), body: L("Ground floor, open 7:00–23:00. Label your food in the fridge with your name and check-out date.", "Prizemlje, otvorena 7:00–23:00. Označite hranu u frižideru svojim imenom i datumom odjave.", "Zemin kat, 07.00–23.00 arası açık. Buzdolabındaki yiyeceklerinize adınızı ve çıkış tarihinizi yazın.") },
-  { section: "FACILITY" as const, icon: "washing-machine", sortOrder: 2, title: L("Laundry", "Vešeraj", "Çamaşırhane"), body: L("Washer and dryer in the basement, €4 per wash including detergent. Tokens at reception.", "Mašina za pranje i sušenje u podrumu, 4 € po pranju s deterdžentom. Žetoni na recepciji.", "Bodrumda çamaşır ve kurutma makinesi; deterjan dahil yıkama başı 4 €. Jetonlar resepsiyonda.") },
-  { section: "FACILITY" as const, icon: "sofa", sortOrder: 3, title: L("Common room", "Dnevni boravak", "Ortak alan"), body: L("Books, board games and a projector for film nights on Tuesdays and Sundays.", "Knjige, društvene igre i projektor za filmske večeri utorkom i nedjeljom.", "Kitaplar, kutu oyunları ve salı ile pazar film geceleri için projeksiyon.") },
-  { section: "FACILITY" as const, icon: "lock", sortOrder: 4, title: L("Lockers", "Ormarići", "Dolaplar"), body: L("Every bed has a locker. Bring a padlock or buy one at reception for €3.", "Svaki krevet ima ormarić. Ponesite lokot ili ga kupite na recepciji za 3 €.", "Her yatağın bir dolabı var. Asma kilit getirin ya da resepsiyondan 3 €'ya alın.") },
-  { section: "FACILITY" as const, icon: "concierge-bell", sortOrder: 5, title: L("Reception", "Recepcija", "Resepsiyon"), body: L("Open 24 hours on the ground floor — tickets, tours, maps and advice.", "Otvorena 24 sata u prizemlju — karte, ture, mape i savjeti.", "Zemin katta 24 saat açık — biletler, turlar, haritalar ve tavsiyeler.") },
-  { section: "FACILITY" as const, icon: "sunset", sortOrder: 6, title: L("Rooftop terrace", "Krovna terasa", "Çatı terası"), body: L("Breakfast in the morning, sunset views in the evening. Open until 23:00.", "Doručak ujutro, zalazak sunca uveče. Otvorena do 23:00.", "Sabah kahvaltı, akşam gün batımı manzarası. 23.00'e kadar açık.") },
-  { section: "FACILITY" as const, icon: "laptop", sortOrder: 7, title: L("Work corner", "Kutak za rad", "Çalışma köşesi"), body: L("Quiet desks with fast Wi-Fi on the first floor landing. Video calls in the phone booth.", "Mirni stolovi s brzim Wi-Fijem na prvom spratu. Video pozivi u telefonskoj kabini.", "Birinci kat sahanlığında hızlı Wi-Fi'lı sessiz masalar. Görüntülü görüşmeler için telefon kabini.") },
+  { section: "FACILITY" as const, icon: "washing-machine", sortOrder: 2, title: L("Laundry", "Vešeraj", "Çamaşırhane"), body: L("Washer and dryer in the basement, €4 per wash including detergent. Tokens at reception.", "Mašina za pranje i sušenje veša u podrumu, 4 € po pranju sa deterdžentom. Žetoni su na recepciji.", "Bodrumda çamaşır ve kurutma makinesi; deterjan dahil yıkama başı 4 €. Jetonlar resepsiyonda.") },
+  { section: "FACILITY" as const, icon: "sofa", sortOrder: 3, title: L("Common room", "Dnevni boravak", "Ortak alan"), body: L("Books, board games and a projector for film nights on Tuesdays and Sundays.", "Knjige, društvene igre i projektor za filmske večeri utorkom i nedeljom.", "Kitaplar, kutu oyunları ve salı ile pazar film geceleri için projeksiyon.") },
+  { section: "FACILITY" as const, icon: "lock", sortOrder: 4, title: L("Lockers", "Ormarići", "Dolaplar"), body: L("Every bed has a locker. Bring a padlock or buy one at reception for €3.", "Svaki krevet ima ormarić. Ponesite katanac ili ga kupite na recepciji za 3 €.", "Her yatağın bir dolabı var. Asma kilit getirin ya da resepsiyondan 3 €'ya alın.") },
+  { section: "FACILITY" as const, icon: "concierge-bell", sortOrder: 5, title: L("Reception", "Recepcija", "Resepsiyon"), body: L("Open 24 hours on the ground floor — tickets, tours, maps and advice.", "Otvorena 24 sata u prizemlju — karte, ture, mape i saveti.", "Zemin katta 24 saat açık — biletler, turlar, haritalar ve tavsiyeler.") },
+  { section: "FACILITY" as const, icon: "sunset", sortOrder: 6, title: L("Rooftop terrace", "Krovna terasa", "Çatı terası"), body: L("Breakfast in the morning, sunset views in the evening. Open until 23:00.", "Doručak ujutru, pogled na zalazak sunca uveče. Otvorena do 23:00.", "Sabah kahvaltı, akşam gün batımı manzarası. 23.00'e kadar açık.") },
+  { section: "FACILITY" as const, icon: "laptop", sortOrder: 7, title: L("Work corner", "Kutak za rad", "Çalışma köşesi"), body: L("Quiet desks with fast Wi-Fi on the first floor landing. Video calls in the phone booth.", "Mirni stolovi sa brzim Wi-Fi-jem na odmorištu prvog sprata. Za video pozive tu je telefonska kabina.", "Birinci kat sahanlığında hızlı Wi-Fi'lı sessiz masalar. Görüntülü görüşmeler için telefon kabini.") },
   // Rules
-  { section: "RULE" as const, icon: "users", sortOrder: 1, title: L("Visitors", "Posjetioci", "Ziyaretçiler"), body: L("Friends are welcome in the common areas until 22:00, but not in the rooms.", "Prijatelji su dobrodošli u zajedničkim prostorijama do 22:00, ali ne i u sobama.", "Arkadaşlarınız 22.00'ye kadar ortak alanlarda ağırlanabilir, odalara giremez.") },
-  { section: "RULE" as const, icon: "wine", sortOrder: 2, title: L("Alcohol", "Alkohol", "Alkol"), body: L("Fine on the terrace and in the common room. Please not in the dorms.", "Dozvoljen na terasi i u dnevnom boravku. Molimo ne u spavaonicama.", "Terasta ve ortak alanda serbest. Lütfen yatakhanelerde değil.") },
-  { section: "RULE" as const, icon: "key-round", sortOrder: 3, title: L("Key cards", "Kartice", "Kartlar"), body: L("Lost key cards cost €10 to replace. Keep the card away from your phone.", "Zamjena izgubljene kartice košta 10 €. Držite karticu dalje od telefona.", "Kaybolan kartın değişim ücreti 10 €'dur. Kartı telefonunuzdan uzak tutun.") },
-  { section: "RULE" as const, icon: "recycle", sortOrder: 4, title: L("Recycling", "Recikliranje", "Geri dönüşüm"), body: L("Separate bins for plastic, glass and paper are in the kitchen.", "Odvojene kante za plastiku, staklo i papir nalaze se u kuhinji.", "Plastik, cam ve kâğıt için ayrı kutular mutfakta.") },
+  { section: "RULE" as const, icon: "users", sortOrder: 1, title: L("Visitors", "Posetioci", "Ziyaretçiler"), body: L("Friends are welcome in the common areas until 22:00, but not in the rooms.", "Prijatelji su dobrodošli u zajedničkim prostorijama do 22:00, ali ne i u sobama.", "Arkadaşlarınız 22.00'ye kadar ortak alanlarda ağırlanabilir, odalara giremez.") },
+  { section: "RULE" as const, icon: "wine", sortOrder: 2, title: L("Alcohol", "Alkohol", "Alkol"), body: L("Fine on the terrace and in the common room. Please not in the dorms.", "Dozvoljen je na terasi i u dnevnom boravku. Molimo vas, ne u spavaonicama.", "Terasta ve ortak alanda serbest. Lütfen yatakhanelerde değil.") },
+  { section: "RULE" as const, icon: "key-round", sortOrder: 3, title: L("Key cards", "Kartice", "Kartlar"), body: L("Lost key cards cost €10 to replace. Keep the card away from your phone.", "Zamena izgubljene kartice košta 10 €. Držite karticu dalje od telefona.", "Kaybolan kartın değişim ücreti 10 €'dur. Kartı telefonunuzdan uzak tutun.") },
+  { section: "RULE" as const, icon: "recycle", sortOrder: 4, title: L("Recycling", "Reciklaža", "Geri dönüşüm"), body: L("Separate bins for plastic, glass and paper are in the kitchen.", "Odvojene kante za plastiku, staklo i papir nalaze se u kuhinji.", "Plastik, cam ve kâğıt için ayrı kutular mutfakta.") },
   // Transport
-  { section: "TRANSPORT" as const, icon: "credit-card", sortOrder: 1, title: L("Istanbulkart", "Istanbulkart", "İstanbulkart"), body: L("One card for tram, metro, bus, funicular and ferries. Buy and top it up at the yellow machines at Karaköy station; you can share one card between friends.", "Jedna kartica za tramvaj, metro, autobus, uspinjaču i trajekte. Kupite je i dopunite na žutim automatima na stanici Karaköy; jednu karticu može koristiti više prijatelja.", "Tramvay, metro, otobüs, füniküler ve vapur için tek kart. Karaköy durağındaki sarı makinelerden alıp yükleyebilirsiniz; bir kartı arkadaşlarla paylaşabilirsiniz.") },
-  { section: "TRANSPORT" as const, icon: "tram-front", sortOrder: 2, title: L("T1 tram", "Tramvaj T1", "T1 tramvayı"), body: L("From Karaköy to Eminönü, Sultanahmet and the Grand Bazaar. Every few minutes, 6 min walk from the hostel.", "Od Karaköya do Eminönüa, Sultanahmeta i Velikog bazara. Svakih nekoliko minuta, 6 min hoda od hostela.", "Karaköy'den Eminönü, Sultanahmet ve Kapalıçarşı'ya. Birkaç dakikada bir; hostelden 6 dk yürüme.") },
-  { section: "TRANSPORT" as const, icon: "train-front", sortOrder: 3, title: L("M2 metro", "Metro M2", "M2 metro"), body: L("Şişhane station is 8 minutes away. Two stops to Taksim, and on to the business districts.", "Stanica Şişhane je 8 minuta hoda. Dvije stanice do Taksima i dalje prema poslovnim četvrtima.", "Şişhane istasyonu 8 dakika uzaklıkta. Taksim'e iki durak, oradan iş merkezlerine.") },
+  { section: "TRANSPORT" as const, icon: "credit-card", sortOrder: 1, title: L("Istanbulkart", "Istanbulkart", "İstanbulkart"), body: L("One card for tram, metro, bus, funicular and ferries. Buy and top it up at the yellow machines at Karaköy station; you can share one card between friends.", "Jedna kartica za tramvaj, metro, autobus, uspinjaču i trajekte. Kupite je i dopunite na žutim automatima na stanici Karaköy; jednu karticu može da koristi više prijatelja.", "Tramvay, metro, otobüs, füniküler ve vapur için tek kart. Karaköy durağındaki sarı makinelerden alıp yükleyebilirsiniz; bir kartı arkadaşlarla paylaşabilirsiniz.") },
+  { section: "TRANSPORT" as const, icon: "tram-front", sortOrder: 2, title: L("T1 tram", "Tramvaj T1", "T1 tramvayı"), body: L("From Karaköy to Eminönü, Sultanahmet and the Grand Bazaar. Every few minutes, 6 min walk from the hostel.", "Od Karaköya do Eminönüa, Sultanahmeta i Velikog bazara. Saobraća na svakih nekoliko minuta, 6 min hoda od hostela.", "Karaköy'den Eminönü, Sultanahmet ve Kapalıçarşı'ya. Birkaç dakikada bir; hostelden 6 dk yürüme.") },
+  { section: "TRANSPORT" as const, icon: "train-front", sortOrder: 3, title: L("M2 metro", "Metro M2", "M2 metro"), body: L("Şişhane station is 8 minutes away. Two stops to Taksim, and on to the business districts.", "Stanica Şişhane je na 8 minuta hoda. Dve stanice do Taksima i dalje ka poslovnim četvrtima.", "Şişhane istasyonu 8 dakika uzaklıkta. Taksim'e iki durak, oradan iş merkezlerine.") },
   { section: "TRANSPORT" as const, icon: "ship", sortOrder: 4, title: L("Ferries", "Trajekti", "Vapurlar"), body: L("Karaköy pier for Kadıköy and Üsküdar. The cheapest Bosphorus view you'll get.", "Pristanište Karaköy za Kadıköy i Üsküdar. Najjeftiniji pogled na Bosfor.", "Kadıköy ve Üsküdar için Karaköy iskelesi. Boğaz'ı görmenin en ucuz yolu.") },
-  { section: "TRANSPORT" as const, icon: "plane", sortOrder: 5, title: L("Airports", "Aerodromi", "Havalimanları"), body: L("Havaist buses run from Istanbul Airport (IST) to Taksim; Havabüs from Sabiha Gökçen (SAW). Or book our transfer.", "Havaist autobusi voze od aerodroma Istanbul (IST) do Taksima; Havabüs od Sabihe Gökçen (SAW). Ili rezervišite naš transfer.", "İstanbul Havalimanı'ndan (IST) Taksim'e Havaist, Sabiha Gökçen'den (SAW) Havabüs otobüsleri var. Ya da transferimizi ayırtın.") },
-  { section: "TRANSPORT" as const, icon: "car-taxi-front", sortOrder: 6, title: L("Taxis", "Taksi", "Taksi"), body: L("Use a taxi app or ask reception to call one. Make sure the meter is on.", "Koristite aplikaciju za taksi ili zamolite recepciju da ga pozove. Provjerite da je taksimetar uključen.", "Bir taksi uygulaması kullanın ya da resepsiyondan çağırmasını isteyin. Taksimetrenin açık olduğundan emin olun.") },
+  { section: "TRANSPORT" as const, icon: "plane", sortOrder: 5, title: L("Airports", "Aerodromi", "Havalimanları"), body: L("Havaist buses run from Istanbul Airport (IST) to Taksim; Havabüs from Sabiha Gökçen (SAW). Or book our transfer.", "Havaist autobusi voze od aerodroma Istanbul (IST) do Taksima, a Havabüs od aerodroma Sabiha Gökçen (SAW). Ili rezervišite naš transfer.", "İstanbul Havalimanı'ndan (IST) Taksim'e Havaist, Sabiha Gökçen'den (SAW) Havabüs otobüsleri var. Ya da transferimizi ayırtın.") },
+  { section: "TRANSPORT" as const, icon: "car-taxi-front", sortOrder: 6, title: L("Taxis", "Taksi", "Taksi"), body: L("Use a taxi app or ask reception to call one. Make sure the meter is on.", "Koristite aplikaciju za taksi ili zamolite recepciju da ga pozove. Proverite da li je taksimetar uključen.", "Bir taksi uygulaması kullanın ya da resepsiyondan çağırmasını isteyin. Taksimetrenin açık olduğundan emin olun.") },
 ];
 
 export const guideConfig = {
   welcomeNote: L(
     "Hoş geldiniz! We're glad you're here. Reception is open around the clock — come say hi any time.",
-    "Hoş geldiniz! Drago nam je što ste ovdje. Recepcija radi non-stop — svratite kad god želite.",
+    "Hoş geldiniz! Drago nam je što ste ovde. Recepcija radi non-stop — svratite kad god želite.",
     "Hoş geldiniz! Burada olduğunuza sevindik. Resepsiyon 7/24 açık — istediğiniz zaman uğrayın.",
   ),
   wifiNetwork: "IstanbulHostel_Guests",
@@ -420,24 +420,24 @@ export const guideConfig = {
   breakfastLocation: L("Rooftop terrace (5th floor)", "Krovna terasa (5. sprat)", "Çatı terası (5. kat)"),
   breakfastMenu: L(
     "Fresh bread and simit, white cheese, olives, tomatoes and cucumber, eggs, honey and jam, fruit, Turkish tea and filter coffee.",
-    "Svjež hljeb i simit, bijeli sir, masline, paradajz i krastavac, jaja, med i džem, voće, turski čaj i filter kafa.",
+    "Svež hleb i simit, beli sir, masline, paradajz i krastavac, jaja, med i džem, voće, turski čaj i filter kafa.",
     "Taze ekmek ve simit, beyaz peynir, zeytin, domates ve salatalık, yumurta, bal ve reçel, meyve, Türk çayı ve filtre kahve.",
   ),
   luggageInfo: L(
     "Free luggage storage at reception before check-in and after check-out, until midnight on your departure day.",
-    "Besplatno čuvanje prtljaga na recepciji prije prijave i nakon odjave, do ponoći na dan odlaska.",
+    "Besplatno čuvanje prtljaga na recepciji pre prijave i posle odjave, do ponoći na dan odlaska.",
     "Girişten önce ve çıkıştan sonra, ayrılış gününüzün gece yarısına kadar resepsiyonda ücretsiz bagaj emaneti.",
   ),
   quietHoursStart: "23:00",
   quietHoursEnd: "08:00",
   smokingPolicy: L(
     "The building is non-smoking. You can smoke in the marked corner of the terrace.",
-    "Zgrada je nepušačka. Pušiti možete u označenom kutku terase.",
+    "U zgradi se ne puši. Pušiti možete u označenom delu terase.",
     "Bina içinde sigara içilmez. Terasın işaretli köşesinde içebilirsiniz.",
   ),
   checkoutSteps: L(
     "Strip your bed and leave the linen in the basket by the door\nEmpty your locker and return the padlock if borrowed\nDrop your key card at reception\nAsk us to store your luggage if you're leaving later",
-    "Skinite posteljinu i ostavite je u korpi kod vrata\nIspraznite ormarić i vratite lokot ako ste ga posudili\nOstavite karticu na recepciji\nZamolite nas da čuvamo prtljag ako odlazite kasnije",
+    "Skinite posteljinu i ostavite je u korpi kod vrata\nIspraznite ormarić i vratite katanac ako ste ga pozajmili\nOstavite karticu na recepciji\nZamolite nas da vam čuvamo prtljag ako odlazite kasnije",
     "Çarşaflarınızı çıkarıp kapının yanındaki sepete bırakın\nDolabınızı boşaltın, ödünç aldıysanız kilidi iade edin\nKartınızı resepsiyona bırakın\nDaha geç ayrılacaksanız bagajınızı bize emanet edin",
   ),
   receptionHours: L("24 hours, every day", "24 sata, svaki dan", "Her gün 24 saat"),
@@ -446,37 +446,37 @@ export const guideConfig = {
 export const faqs = [
   {
     question: L("Is breakfast included?", "Da li je doručak uključen?", "Kahvaltı dahil mi?"),
-    answer: L("Yes. A Turkish breakfast is served on the rooftop every morning from 7:30 to 10:30, included in every stay.", "Da. Turski doručak služi se na terasi svako jutro od 7:30 do 10:30 i uključen je u svaki boravak.", "Evet. Türk kahvaltısı her sabah 07.30–10.30 arası çatı katında servis edilir ve tüm konaklamalara dahildir."),
+    answer: L("Yes. A Turkish breakfast is served on the rooftop every morning from 7:30 to 10:30, included in every stay.", "Da. Turski doručak služi se na krovnoj terasi svakog jutra od 7:30 do 10:30 i uključen je u svaki boravak.", "Evet. Türk kahvaltısı her sabah 07.30–10.30 arası çatı katında servis edilir ve tüm konaklamalara dahildir."),
   },
   {
-    question: L("What time are check-in and check-out?", "Kada je prijava i odjava?", "Giriş ve çıkış saatleri nedir?"),
-    answer: L("Check-in is from 14:00 and check-out is until 11:00. Reception is open 24 hours, so late arrivals are no problem, and we'll store your bags for free.", "Prijava je od 14:00, a odjava do 11:00. Recepcija radi 24 sata, pa kasni dolasci nisu problem, a prtljag čuvamo besplatno.", "Giriş 14.00'ten itibaren, çıkış 11.00'e kadardır. Resepsiyon 24 saat açık olduğu için geç varış sorun değil; bagajınızı ücretsiz saklarız."),
+    question: L("What time are check-in and check-out?", "Kada su prijava i odjava?", "Giriş ve çıkış saatleri nedir?"),
+    answer: L("Check-in is from 14:00 and check-out is until 11:00. Reception is open 24 hours, so late arrivals are no problem, and we'll store your bags for free.", "Prijava je od 14:00, a odjava do 11:00. Recepcija radi 24 sata, pa kasni dolasci nisu problem, a prtljag vam čuvamo besplatno.", "Giriş 14.00'ten itibaren, çıkış 11.00'e kadardır. Resepsiyon 24 saat açık olduğu için geç varış sorun değil; bagajınızı ücretsiz saklarız."),
   },
   {
     question: L("How do I pay?", "Kako se plaća?", "Ödemeyi nasıl yapabilirim?"),
-    answer: L("Reservations made on this website are requests. Once we confirm by email, you pay at reception on arrival by card or cash (EUR, TRY or USD).", "Rezervacije na ovoj stranici su zahtjevi. Nakon što potvrdimo e-mailom, plaćate na recepciji po dolasku karticom ili gotovinom (EUR, TRY ili USD).", "Bu web sitesindeki rezervasyonlar taleptir. E-postayla onayladıktan sonra ödemeyi varışta resepsiyonda kartla veya nakit (EUR, TRY veya USD) yaparsınız."),
+    answer: L("Reservations made on this website are requests. Once we confirm by email, you pay at reception on arrival by card or cash (EUR, TRY or USD).", "Rezervacije na ovom sajtu su zahtevi. Kada ih potvrdimo e-mailom, plaćate na recepciji po dolasku, karticom ili gotovinom (EUR, TRY ili USD).", "Bu web sitesindeki rezervasyonlar taleptir. E-postayla onayladıktan sonra ödemeyi varışta resepsiyonda kartla veya nakit (EUR, TRY veya USD) yaparsınız."),
   },
   {
-    question: L("Is there an age limit?", "Postoji li starosna granica?", "Yaş sınırı var mı?"),
-    answer: L("Guests in dorms must be 18 or older. Private rooms are open to families with children — just let us know when you book.", "Gosti u spavaonicama moraju imati najmanje 18 godina. Privatne sobe su otvorene i za porodice s djecom — samo nam javite pri rezervaciji.", "Yatakhanelerdeki misafirler 18 yaşından büyük olmalıdır. Özel odalar çocuklu ailelere de açıktır — rezervasyonda belirtmeniz yeterli."),
+    question: L("Is there an age limit?", "Da li postoji starosna granica?", "Yaş sınırı var mı?"),
+    answer: L("Guests in dorms must be 18 or older. Private rooms are open to families with children — just let us know when you book.", "Gosti u spavaonicama moraju imati najmanje 18 godina. Privatne sobe su otvorene i za porodice sa decom — samo nam javite prilikom rezervacije.", "Yatakhanelerdeki misafirler 18 yaşından büyük olmalıdır. Özel odalar çocuklu ailelere de açıktır — rezervasyonda belirtmeniz yeterli."),
   },
   {
-    question: L("Can I cancel my reservation?", "Mogu li otkazati rezervaciju?", "Rezervasyonumu iptal edebilir miyim?"),
-    answer: L("Yes, free of charge up to 48 hours before arrival. Reply to your confirmation email or contact reception.", "Da, besplatno do 48 sati prije dolaska. Odgovorite na e-mail s potvrdom ili kontaktirajte recepciju.", "Evet, varıştan 48 saat öncesine kadar ücretsiz. Onay e-postanızı yanıtlayın veya resepsiyonla iletişime geçin."),
+    question: L("Can I cancel my reservation?", "Da li mogu da otkažem rezervaciju?", "Rezervasyonumu iptal edebilir miyim?"),
+    answer: L("Yes, free of charge up to 48 hours before arrival. Reply to your confirmation email or contact reception.", "Da, besplatno do 48 sati pre dolaska. Odgovorite na e-mail sa potvrdom ili kontaktirajte recepciju.", "Evet, varıştan 48 saat öncesine kadar ücretsiz. Onay e-postanızı yanıtlayın veya resepsiyonla iletişime geçin."),
   },
   {
-    question: L("How do I get here from the airport?", "Kako doći s aerodroma?", "Havalimanından nasıl gelirim?"),
-    answer: L("Take the Havaist bus to Taksim and the M2 metro two stops to Şişhane, or book our airport transfer and a driver will meet you at arrivals.", "Uzmite Havaist autobus do Taksima i metro M2 dvije stanice do Şişhanea, ili rezervišite naš transfer i vozač će vas dočekati.", "Havaist otobüsüyle Taksim'e, oradan M2 metroyla iki durak Şişhane'ye gelin ya da havalimanı transferimizi ayırtın; şoför sizi karşılasın."),
+    question: L("How do I get here from the airport?", "Kako da stignem sa aerodroma?", "Havalimanından nasıl gelirim?"),
+    answer: L("Take the Havaist bus to Taksim and the M2 metro two stops to Şişhane, or book our airport transfer and a driver will meet you at arrivals.", "Uzmite Havaist autobus do Taksima, a zatim metro M2 dve stanice do Şişhanea, ili rezervišite naš transfer i vozač će vas sačekati u dolaznom terminalu.", "Havaist otobüsüyle Taksim'e, oradan M2 metroyla iki durak Şişhane'ye gelin ya da havalimanı transferimizi ayırtın; şoför sizi karşılasın."),
   },
 ];
 
 export const testimonials = [
   {
     name: "Sample guest",
-    origin: "Sarajevo",
+    origin: "Belgrade",
     quote: L(
       "The rooftop at sunset was the highlight of my trip, and the team sent me to the best lokanta I've ever eaten at.",
-      "Terasa u zalazak sunca bila je vrhunac mog putovanja, a tim me poslao u najbolju lokantu u kojoj sam ikad jela.",
+      "Terasa u vreme zalaska sunca bila je vrhunac mog putovanja, a tim me je poslao u najbolju lokantu u kojoj sam ikada jela.",
       "Gün batımında teras gezimin en güzel anıydı; ekip beni yediğim en iyi lokantaya yönlendirdi.",
     ),
   },
@@ -485,7 +485,7 @@ export const testimonials = [
     origin: "Lisbon",
     quote: L(
       "Clean, quiet at night, and the QR guide in the room answered every question before I had to ask.",
-      "Čisto, mirno noću, a QR vodič u sobi odgovorio je na svako pitanje prije nego što sam ga postavio.",
+      "Čisto, mirno noću, a QR vodič u sobi odgovorio je na svako pitanje pre nego što sam stigao da ga postavim.",
       "Temiz, geceleri sessiz; odadaki QR rehber daha sormadan tüm sorularımı yanıtladı.",
     ),
   },
@@ -494,7 +494,7 @@ export const testimonials = [
     origin: "Melbourne",
     quote: L(
       "I came for three nights and stayed eight. The food tour alone is worth the trip to Istanbul.",
-      "Došla sam na tri noći, a ostala osam. Sama gastronomska tura vrijedi puta u Istanbul.",
+      "Došla sam na tri noći, a ostala osam. Već sama gastronomska tura vredi puta do Istanbula.",
       "Üç gece için geldim, sekiz gece kaldım. Yemek turu tek başına İstanbul'a gelmeye değer.",
     ),
   },
@@ -505,7 +505,7 @@ export const contentBlocks = {
     title: L("Your home away from home in Istanbul", "Vaš dom daleko od doma u Istanbulu", "İstanbul'daki eviniz"),
     subtitle: L(
       "Meet travelers, discover unforgettable places, and experience Istanbul like a local.",
-      "Upoznajte putnike, otkrijte nezaboravna mjesta i doživite Istanbul kao lokalac.",
+      "Upoznajte druge putnike, otkrijte nezaboravna mesta i doživite Istanbul kao pravi meštanin.",
       "Gezginlerle tanışın, unutulmaz yerler keşfedin ve İstanbul'u bir yerli gibi yaşayın.",
     ),
     image: "/images/hero-istanbul.jpg",

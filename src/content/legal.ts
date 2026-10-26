@@ -15,15 +15,15 @@ export const privacy: Record<Locale, Doc> = {
       { heading: "Cookies", body: ["We use only essential cookies: one to remember your language and, if you sign in to the guest guide, one session cookie. No advertising or tracking cookies are used."] },
     ],
   },
-  bs: {
+  sr: {
     sections: [
-      { heading: "Ko smo mi", body: ["Istanbul Hostel (\"mi\") upravlja ovom web stranicom i vodičem za goste. Ovo je demonstracijski tekst koji je pripremila kompanija Medya 333; stvarni objekat ovdje mora upisati svoje pravno lice, adresu i kontakt za zaštitu podataka."] },
-      { heading: "Koje podatke prikupljamo", body: ["Kada pošaljete zahtjev za rezervaciju, turu, transfer ili kontakt, prikupljamo vaše ime, e-mail adresu, broj telefona, državu, datume boravka i napomene koje dodate.", "Kada potvrdite boravak u vodiču za goste, čuvamo kratkotrajni šifrovani kolačić sesije povezan s vašom rezervacijom.", "Ne primamo plaćanja karticom online i ne čuvamo podatke o platnim karticama."] },
-      { heading: "Zašto ih koristimo", body: ["Da odgovorimo na vaše zahtjeve i upravljamo njima, pripremimo sobu, komuniciramo o boravku, ispunimo zakonske obaveze prijave gostiju u Turskoj i održimo sigurnost objekta."] },
-      { heading: "Koliko dugo ih čuvamo", body: ["Podaci o rezervacijama čuvaju se onoliko dugo koliko to zahtijevaju turski zakoni o smještaju i porezima. Kontakt poruke i utisci brišu se nakon 24 mjeseca, osim ako nisu dio rezervacije."] },
-      { heading: "S kim ih dijelimo", body: ["Samo s pružaocima usluga koji nam pomažu u radu hostela (npr. hosting i partneri za ture koje zatražite) te s nadležnim organima kada to zakon nalaže. Nikada ne prodajemo vaše podatke."] },
-      { heading: "Vaša prava", body: ["Prema turskom Zakonu o zaštiti ličnih podataka (KVKK) i, gdje je primjenjivo, GDPR-u EU, možete zatražiti pristup, ispravku ili brisanje podataka, odnosno uložiti prigovor na njihovu upotrebu. Pišite na e-mail adresu s naše stranice za kontakt."] },
-      { heading: "Kolačići", body: ["Koristimo samo neophodne kolačiće: jedan za pamćenje jezika i, ako se prijavite u vodič za goste, jedan kolačić sesije. Ne koristimo reklamne kolačiće niti kolačiće za praćenje."] },
+      { heading: "Ko smo mi", body: ["Istanbul Hostel (\"mi\") upravlja ovim veb-sajtom i vodičem za goste. Ovo je demonstracioni tekst koji je pripremila kompanija Medya 333; stvarni objekat ovde mora da navede svoje pravno lice, adresu i kontakt za zaštitu podataka."] },
+      { heading: "Koje podatke prikupljamo", body: ["Kada pošaljete zahtev za rezervaciju, turu, transfer ili kontakt, prikupljamo vaše ime, e-mail adresu, broj telefona, državu, datume boravka i napomene koje dodate.", "Kada potvrdite boravak u vodiču za goste, čuvamo kratkotrajni šifrovani kolačić sesije povezan sa vašom rezervacijom.", "Ne primamo plaćanja karticom preko interneta i ne čuvamo podatke o platnim karticama."] },
+      { heading: "Zašto ih koristimo", body: ["Da bismo odgovorili na vaše zahteve i upravljali njima, pripremili sobu, komunicirali sa vama o boravku, ispunili zakonske obaveze prijave gostiju u Turskoj i održavali bezbednost objekta."] },
+      { heading: "Koliko dugo ih čuvamo", body: ["Podaci o rezervacijama čuvaju se onoliko dugo koliko to zahtevaju turski propisi o smeštaju i porezima. Poruke poslate putem kontakt forme i utisci gostiju brišu se nakon 24 meseca, osim ako nisu deo rezervacije."] },
+      { heading: "Sa kim ih delimo", body: ["Samo sa pružaocima usluga koji nam pomažu u radu hostela (na primer, hosting provajder i partneri za ture koje zatražite) i sa nadležnim organima kada to zakon nalaže. Nikada ne prodajemo vaše podatke."] },
+      { heading: "Vaša prava", body: ["U skladu sa turskim Zakonom o zaštiti podataka o ličnosti (KVKK) i, gde je primenljivo, Opštom uredbom EU o zaštiti podataka (GDPR), možete zatražiti pristup svojim podacima, njihovu ispravku ili brisanje, odnosno uložiti prigovor na njihovu upotrebu. Pišite nam na e-mail adresu navedenu na stranici za kontakt."] },
+      { heading: "Kolačići", body: ["Koristimo samo neophodne kolačiće: jedan za pamćenje izabranog jezika i, ako se prijavite u vodič za goste, jedan kolačić sesije. Ne koristimo reklamne kolačiće niti kolačiće za praćenje."] },
     ],
   },
 };
@@ -40,15 +40,15 @@ export const terms: Record<Locale, Doc> = {
       { heading: "Liability", body: ["Please use the lockers provided. We are not responsible for valuables left outside them, except where the law says otherwise."] },
     ],
   },
-  bs: {
+  sr: {
     sections: [
-      { heading: "Zahtjevi za rezervaciju", body: ["Rezervacije napravljene na ovoj stranici su zahtjevi. Rezervacija je potvrđena tek kada dobijete potvrdu od našeg tima na recepciji. Do tada dostupnost i cijene nisu zagarantovane."] },
-      { heading: "Plaćanje", body: ["Online se ništa ne naplaćuje. Potvrđeni iznos plaća se na recepciji po dolasku, karticom ili gotovinom. Gradska taksa, gdje je primjenjiva, naplaćuje se zasebno."] },
-      { heading: "Otkazivanje", body: ["Rezervaciju možete besplatno otkazati do 48 sati prije dolaska. Za kasnija otkazivanja i nedolazak može se naplatiti prva noć."] },
-      { heading: "Prijava i identifikacija", body: ["Prijava je od 14:00, a odjava do 11:00. Svi gosti pri prijavi moraju pokazati važeći pasoš ili ličnu kartu, u skladu s turskim zakonom. Gosti u spavaonicama moraju imati najmanje 18 godina."] },
-      { heading: "Kućni red", body: ["Sati tišine, zabrana pušenja i ostala pravila iz vodiča za goste važe za sve. Gostima koji ozbiljno ili ponovljeno krše pravila možemo prekinuti boravak bez povrata novca za preostale noći."] },
-      { heading: "Ture i transferi", body: ["Doživljaji i transferi su zahtjevi dok ih ne potvrdimo. Neke organizuju partnerske kompanije čiji uslovi mogu važiti. Prikazane cijene su po osobi, osim ako je navedeno po grupi."] },
-      { heading: "Odgovornost", body: ["Molimo koristite ormariće. Ne odgovaramo za vrijedne stvari ostavljene izvan njih, osim ako zakon ne propisuje drugačije."] },
+      { heading: "Zahtevi za rezervaciju", body: ["Rezervacije napravljene na ovom sajtu su zahtevi. Rezervacija je potvrđena tek kada dobijete potvrdu od našeg tima na recepciji. Do tada dostupnost i cene nisu zagarantovane."] },
+      { heading: "Plaćanje", body: ["Ništa se ne naplaćuje preko interneta. Potvrđeni iznos plaća se na recepciji po dolasku, karticom ili gotovinom. Boravišna taksa, gde je primenljiva, naplaćuje se posebno."] },
+      { heading: "Otkazivanje", body: ["Rezervaciju možete besplatno otkazati najkasnije 48 sati pre datuma dolaska. Za kasnija otkazivanja i nedolazak može se naplatiti prva noć."] },
+      { heading: "Prijava i identifikacija", body: ["Prijava je od 14:00, a odjava do 11:00. U skladu sa turskim zakonom, svi gosti pri prijavi moraju da pokažu važeći pasoš ili ličnu kartu. Gosti u spavaonicama moraju imati najmanje 18 godina."] },
+      { heading: "Kućni red", body: ["Vreme tišine, zabrana pušenja i ostala pravila kućnog reda navedena u vodiču za goste važe za sve. Gostima koji ozbiljno ili ponovljeno krše pravila možemo prekinuti boravak bez povraćaja novca za preostale noći."] },
+      { heading: "Ture i transferi", body: ["Doživljaji i transferi su zahtevi dok ih ne potvrdimo. Neke od njih organizuju partnerske kompanije, pa mogu važiti i njihovi uslovi. Prikazane cene su po osobi, osim ako je navedeno da su po grupi."] },
+      { heading: "Odgovornost", body: ["Molimo vas da koristite obezbeđene ormariće. Ne odgovaramo za vredne stvari ostavljene van njih, osim ako zakon ne propisuje drugačije."] },
     ],
   },
 };

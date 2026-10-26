@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Download, EllipsisVertical, Share, WifiOff, X } from "lucide-react";
+import { Download, WifiOff, X } from "lucide-react";
+import { useStaffText } from "./staff-lang";
 
 type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
 
@@ -12,6 +13,7 @@ const REFRESH_MS = 45_000;
 /** Phone-app behaviour for /staff: service worker, install prompt, live refresh, offline notice. */
 export function StaffAppShell() {
   const router = useRouter();
+  const { t } = useStaffText();
   const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
   const [offline, setOffline] = useState(false);
   // Fallback when the browser gives no install prompt (iPhone, Samsung Internet, in-app browsers, slow Chrome heuristics).
@@ -102,7 +104,7 @@ export function StaffAppShell() {
     <>
       {offline ? (
         <div role="status" className="sticky top-14 z-20 flex items-center justify-center gap-2 bg-tulip px-4 py-2 text-[13px] font-medium text-paper">
-          <WifiOff className="size-4" aria-hidden /> No connection. Changes will not save until you are back online.
+          <WifiOff className="size-4" aria-hidden /> {t.shell.offline}
         </div>
       ) : null}
       {installEvent ? (
@@ -110,13 +112,13 @@ export function StaffAppShell() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hk/icon-192.png" alt="" className="size-10 rounded-xl" />
           <div className="min-w-0 flex-1 text-[13.5px] leading-snug">
-            <p className="font-semibold">Install the staff app</p>
-            <p className="text-paper/70">Opens full screen from your home screen.</p>
+            <p className="font-semibold">{t.shell.installTitle}</p>
+            <p className="text-paper/70">{t.shell.installSub}</p>
           </div>
           <button onClick={install} className="flex items-center gap-1.5 rounded-lg bg-tile-bright px-3 py-2 text-[13px] font-semibold text-ink">
-            <Download className="size-4" aria-hidden /> Install
+            <Download className="size-4" aria-hidden /> {t.shell.install}
           </button>
-          <button onClick={dismiss} aria-label="Not now" className="rounded-md p-1 text-paper/60 hover:text-paper">
+          <button onClick={dismiss} aria-label={t.shell.notNow} className="rounded-md p-1 text-paper/60 hover:text-paper">
             <X className="size-4" aria-hidden />
           </button>
         </div>
@@ -127,43 +129,27 @@ export function StaffAppShell() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/hk/icon-192.png" alt="" className="size-10 rounded-xl" />
             <div className="min-w-0 flex-1 text-[13.5px] leading-snug">
-              <p className="font-semibold">Add the staff app to your home screen</p>
-              <p className="text-paper/70">Two taps, no app store.</p>
+              <p className="font-semibold">{t.shell.addTitle}</p>
+              <p className="text-paper/70">{t.shell.addSub}</p>
             </div>
             <button
               onClick={() => setShowSteps((v) => !v)}
               className="rounded-lg bg-tile-bright px-3 py-2 text-[13px] font-semibold text-ink"
               aria-expanded={showSteps}
             >
-              {showSteps ? "Hide" : "How?"}
+              {showSteps ? t.shell.hide : t.shell.how}
             </button>
-            <button onClick={dismiss} aria-label="Not now" className="rounded-md p-1 text-paper/60 hover:text-paper">
+            <button onClick={dismiss} aria-label={t.shell.notNow} className="rounded-md p-1 text-paper/60 hover:text-paper">
               <X className="size-4" aria-hidden />
             </button>
           </div>
           {showSteps ? (
             <ol className="mt-3 list-decimal space-y-1.5 border-t border-white/10 pl-5 pt-3 text-[13.5px]">
-              {manual === "ios" ? (
-                <>
-                  <li>Open this page in <strong>Safari</strong>.</li>
-                  <li>
-                    Tap <Share className="inline size-4 align-[-2px]" aria-label="Share" /> <strong>Share</strong> at the bottom.
-                  </li>
-                  <li>
-                    Choose <strong>Add to Home Screen</strong>, then <strong>Add</strong>.
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>Open this page in <strong>Chrome</strong> (not inside WhatsApp or Instagram).</li>
-                  <li>
-                    Tap the menu <EllipsisVertical className="inline size-4 align-[-2px]" aria-label="menu" /> at the top right.
-                  </li>
-                  <li>
-                    Choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.
-                  </li>
-                </>
-              )}
+              {(manual === "ios" ? t.shell.ios : t.shell.android).map((step) => (
+                <li key={step}>
+                  {step.split("**").map((part, i) => (i % 2 ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>))}
+                </li>
+              ))}
             </ol>
           ) : null}
         </div>

@@ -18,7 +18,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
           password: process.env.DEMO_PASSWORD,
           accounts: [
             { label: "Admin · Elif", email: "admin@istanbulhostel.example" },
-            { label: "Manager · Amar", email: "manager@istanbulhostel.example" },
+            { label: "Manager · Marko", email: "manager@istanbulhostel.example" },
             { label: "Reception · Selin", email: "reception@istanbulhostel.example" },
             { label: "Housekeeping · Ayşe", email: "ayse@istanbulhostel.example" },
           ],

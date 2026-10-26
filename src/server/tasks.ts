@@ -36,11 +36,11 @@ export async function getTasks(where: Prisma.TaskWhereInput, take = 100): Promis
   }));
 }
 
-export async function getBoardRooms(): Promise<BoardRoom[]> {
+export async function getBoardRooms(lang: "en" | "sr" = "en"): Promise<BoardRoom[]> {
   const rooms = await getRoomBoard();
   return rooms.map((r) => ({
     ...r,
-    typeName: pick(r.typeName, "en"),
+    typeName: pick(r.typeName, lang),
     statusUpdatedAt: r.statusUpdatedAt.toISOString(),
   }));
 }

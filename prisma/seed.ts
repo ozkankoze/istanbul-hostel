@@ -65,11 +65,31 @@ async function wipe() {
   await db.property.deleteMany();
 }
 
+/** Bump when the demo content changes so deployed demos refresh once. */
+const DEMO_CONTENT_VERSION = 2;
+
 async function main() {
-  // `--if-empty` is used on deploy: only seed a brand-new database, never wipe real data.
+  // `--if-empty`: only seed a brand-new database, never wipe real data.
   if (process.argv.includes("--if-empty") && (await db.property.count()) > 0) {
     console.log("Database already has data — skipping demo seed.");
     return;
+  }
+  // `--refresh-demo` (used on deploy): seed an empty database, or re-seed a *demo* property whose
+  // content is older than DEMO_CONTENT_VERSION. A property that is not marked as demo is never touched.
+  if (process.argv.includes("--refresh-demo")) {
+    const existing = await db.property.findFirst();
+    if (existing) {
+      if (!existing.isDemo) {
+        console.log("Real property found — skipping demo seed.");
+        return;
+      }
+      const v = await db.setting.findFirst({ where: { propertyId: existing.id, key: "demo.contentVersion" } });
+      if (v && v.value === DEMO_CONTENT_VERSION) {
+        console.log("Demo content is up to date — skipping.");
+        return;
+      }
+      console.log("Demo content is outdated — refreshing.");
+    }
   }
   console.log("Seeding Istanbul Hostel demo data…");
   await wipe();
@@ -107,6 +127,7 @@ async function main() {
       { propertyId, key: "transfer.priceIST", value: 45 },
       { propertyId, key: "transfer.priceSAW", value: 55 },
       { propertyId, key: "brand.primaryColor", value: "#1D4FC4" },
+      { propertyId, key: "demo.contentVersion", value: DEMO_CONTENT_VERSION },
     ],
   });
 
@@ -119,7 +140,7 @@ async function main() {
   const passwordHash = await bcrypt.hash(demoPassword, 12);
   const staffSeed = [
     { name: "Elif Demir", email: "admin@istanbulhostel.example", role: "ADMIN" as const },
-    { name: "Amar Hodžić", email: "manager@istanbulhostel.example", role: "MANAGER" as const },
+    { name: "Marko Jovanović", email: "manager@istanbulhostel.example", role: "MANAGER" as const },
     { name: "Selin Kaya", email: "reception@istanbulhostel.example", role: "RECEPTION" as const },
     { name: "Ayşe Yılmaz", email: "ayse@istanbulhostel.example", role: "HOUSEKEEPING" as const },
     { name: "Mehmet Çelik", email: "mehmet@istanbulhostel.example", role: "HOUSEKEEPING" as const },

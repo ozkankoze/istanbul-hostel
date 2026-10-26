@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 
 const LANGS = [
   { id: "en", label: "EN" },
-  { id: "bs", label: "BS" },
+  { id: "sr", label: "SR" },
 ] as const;
 
-/** Edits a { en, bs } value. Submits as name.en / name.bs. */
+/** Edits a { en, sr } value. Submits as name.en / name.sr. */
 export function LocalizedField({
   name,
   label,
@@ -27,7 +27,9 @@ export function LocalizedField({
   required?: boolean;
   hint?: string;
 }) {
-  const v = (value && typeof value === "object" ? value : { en: typeof value === "string" ? value : "" }) as Record<string, string>;
+  const raw = (value && typeof value === "object" ? value : { en: typeof value === "string" ? value : "" }) as Record<string, string>;
+  // Older content was written in Bosnian; offer it as the starting point for Serbian.
+  const v: Record<string, string> = { ...raw, sr: raw.sr || raw.bs || "" };
   const [active, setActive] = useState<(typeof LANGS)[number]["id"]>("en");
   return (
     <div>

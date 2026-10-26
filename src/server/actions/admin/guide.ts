@@ -91,7 +91,7 @@ export async function savePlace(_: unknown, fd: FormData) {
       area: str(fd, "area").slice(0, 60),
       description: localized(fd, "description"),
       walkingMinutes: str(fd, "walkingMinutes") ? z.coerce.number().int().min(1).max(240).parse(str(fd, "walkingMinutes")) : null,
-      transitNote: transit.en || transit.bs ? transit : undefined,
+      transitNote: transit.en || transit.sr ? transit : undefined,
       mapQuery: str(fd, "mapQuery") || `${name}, Istanbul`,
       image: fd.getAll("image").map(String)[0] ?? null,
       sortOrder: Number(str(fd, "sortOrder")) || 0,

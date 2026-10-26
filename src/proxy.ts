@@ -6,15 +6,15 @@ const SESSION_COOKIE = "ih_session";
 /** Paths that are not localized (staff tools, API, auth, media). */
 const UNLOCALIZED = ["/admin", "/staff", "/login", "/api", "/media"];
 
-/** Countries whose visitors get Bosnian automatically (BCMS-speaking). */
-const BOSNIAN_COUNTRIES = new Set(["BA", "HR", "RS", "ME"]);
-const BOSNIAN_LANGS = new Set(["bs", "hr", "sr", "sh", "cnr"]);
+/** Countries whose visitors get Serbian automatically (BCMS-speaking). */
+const SERBIAN_COUNTRIES = new Set(["RS", "BA", "ME", "HR"]);
+const SERBIAN_LANGS = new Set(["sr", "bs", "hr", "sh", "cnr"]);
 
 /**
  * Language for a first visit:
  * 1. a language the visitor chose before (cookie)
- * 2. their country (Vercel / Cloudflare geo headers) — BA, HR, RS, ME → Bosnian
- * 3. a Bosnian-family browser language (for visitors abroad or hosts without geo headers)
+ * 2. their country (Vercel / Cloudflare geo headers) — BA, HR, ME, HR → Serbian
+ * 3. a Serbian-family browser language (for visitors abroad or hosts without geo headers)
  * 4. English for everyone else.
  */
 function preferredLocale(request: NextRequest): Locale {
@@ -22,11 +22,11 @@ function preferredLocale(request: NextRequest): Locale {
   if (isLocale(cookie)) return cookie;
 
   const country = (request.headers.get("x-vercel-ip-country") ?? request.headers.get("cf-ipcountry") ?? "").toUpperCase();
-  if (BOSNIAN_COUNTRIES.has(country)) return "bs";
+  if (SERBIAN_COUNTRIES.has(country)) return "sr";
 
   const header = request.headers.get("accept-language") ?? "";
   const first = header.split(",")[0]?.trim().split(";")[0]?.toLowerCase().split("-")[0] ?? "";
-  if (BOSNIAN_LANGS.has(first)) return "bs";
+  if (SERBIAN_LANGS.has(first)) return "sr";
 
   return defaultLocale;
 }
@@ -51,6 +51,14 @@ export function proxy(request: NextRequest) {
   }
 
   const segment = pathname.split("/")[1];
+  // Bosnian became Serbian: keep old /bs links working.
+  if (segment === "bs") {
+    const url = request.nextUrl.clone();
+    url.pathname = `/sr${pathname.slice(3)}`;
+    const res = NextResponse.redirect(url, 308);
+    res.cookies.set(LOCALE_COOKIE, "sr", { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
+    return res;
+  }
   // Turkish was retired: send old /tr links (and saved cookies) to English.
   if (segment === "tr") {
     const url = request.nextUrl.clone();

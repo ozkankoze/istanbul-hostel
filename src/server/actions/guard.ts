@@ -23,7 +23,7 @@ export async function guard<T>(fn: () => Promise<ActionResult<T>>): Promise<Acti
 export function localized(fd: FormData, name: string) {
   return {
     en: String(fd.get(`${name}.en`) ?? "").trim(),
-    bs: String(fd.get(`${name}.bs`) ?? "").trim(),
+    sr: String(fd.get(`${name}.sr`) ?? "").trim(),
   };
 }
 

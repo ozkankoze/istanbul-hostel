@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input, Select } from "@/components/ui/input";
 import { PRIORITY, TASK_STATUS, TASK_TYPE } from "@/lib/status";
-import { cn, formatDateTime, timeAgo } from "@/lib/utils";
+import { cn, formatDateTime } from "@/lib/utils";
 import { addTaskNote, assignTask, updateTaskStatus } from "@/server/actions/housekeeping";
+import { useStaffText } from "./staff-lang";
 import { useStaffAction } from "./use-action";
 
 export type TaskItem = {
@@ -47,6 +48,7 @@ export function TaskList({
 }
 
 function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: string; name: string }[]; canManage: boolean }) {
+  const { lang, t } = useStaffText();
   const { pending, run } = useStaffAction();
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState("");
@@ -60,44 +62,44 @@ function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: st
       <div className="flex flex-wrap items-start gap-3 p-4">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-1.5">
-            {task.room ? <Badge tone="dark">Room {task.room.number}</Badge> : null}
-            <Badge tone="outline">{TASK_TYPE[task.type]}</Badge>
-            {task.priority !== "NORMAL" ? <Badge tone={p.tone}>{p.label}</Badge> : null}
+            {task.room ? <Badge tone="dark">{t.tasks.room(task.room.number)}</Badge> : null}
+            <Badge tone="outline">{t.taskType[task.type] ?? TASK_TYPE[task.type]}</Badge>
+            {task.priority !== "NORMAL" ? <Badge tone={p.tone}>{t.priorityLabel[task.priority]}</Badge> : null}
             <Badge tone={s.tone} dot>
-              {s.label}
+              {t.taskStatus[task.status]}
             </Badge>
           </div>
           <p className={cn("mt-2 text-[15.5px] font-semibold leading-snug", done && "text-slate line-through decoration-1")}>{task.title}</p>
           {task.description ? <p className="mt-1 whitespace-pre-line text-[13.5px] text-slate">{task.description}</p> : null}
           <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] text-mist">
-            <span>{task.assignedTo ? task.assignedTo.name : "Unassigned"}</span>
+            <span>{task.assignedTo ? task.assignedTo.name : t.tasks.unassigned}</span>
             {task.dueAt ? (
               <span className={cn("inline-flex items-center gap-1", overdue && "font-medium text-tulip")}>
-                <Clock aria-hidden className="size-3" /> Due {formatDateTime(task.dueAt)}
+                <Clock aria-hidden className="size-3" /> {t.tasks.due} {formatDateTime(task.dueAt, lang)}
               </span>
             ) : null}
-            {task.completedAt ? <span>Done {timeAgo(new Date(task.completedAt))}</span> : null}
+            {task.completedAt ? <span>{t.tasks.doneAgo} {t.ago(new Date(task.completedAt))}</span> : null}
           </p>
         </div>
         <div className="flex w-full flex-wrap gap-2 sm:w-auto">
           {task.status === "OPEN" ? (
-            <Button size="sm" disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "IN_PROGRESS" }), "Task started")}>
-              <Play aria-hidden /> Start
+            <Button size="sm" disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "IN_PROGRESS" }), t.tasks.started)}>
+              <Play aria-hidden /> {t.tasks.start}
             </Button>
           ) : null}
           {task.status === "OPEN" || task.status === "IN_PROGRESS" ? (
-            <Button size="sm" variant={task.status === "IN_PROGRESS" ? "primary" : "secondary"} disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "DONE" }), "Marked as done")}>
-              <CheckCircle2 aria-hidden /> Done
+            <Button size="sm" variant={task.status === "IN_PROGRESS" ? "primary" : "secondary"} disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "DONE" }), t.tasks.markedDone)}>
+              <CheckCircle2 aria-hidden /> {t.tasks.done}
             </Button>
           ) : null}
           {done ? (
-            <Button size="sm" variant="secondary" disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "OPEN" }), "Task reopened")}>
-              <RotateCcw aria-hidden /> Reopen
+            <Button size="sm" variant="secondary" disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "OPEN" }), t.tasks.reopened)}>
+              <RotateCcw aria-hidden /> {t.tasks.reopen}
             </Button>
           ) : null}
           <Button size="sm" variant="ghost" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
             <ChevronDown aria-hidden className={cn("transition-transform", open && "rotate-180")} />
-            <span className="sr-only sm:not-sr-only">Notes & history</span>
+            <span className="sr-only sm:not-sr-only">{t.tasks.history}</span>
           </Button>
         </div>
       </div>
@@ -106,7 +108,7 @@ function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: st
           {canManage && staff ? (
             <div className="flex flex-wrap items-center gap-2">
               <label htmlFor={`assign-${task.id}`} className="text-[13px] text-slate">
-                Assigned to
+                {t.tasks.assignedTo}
               </label>
               <div className="w-48">
                 <Select
@@ -114,9 +116,9 @@ function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: st
                   className="h-9 text-[14px]"
                   value={task.assignedTo?.id ?? ""}
                   disabled={pending}
-                  onChange={(e) => run(() => assignTask({ taskId: task.id, userId: e.target.value || null }), "Assignment updated")}
+                  onChange={(e) => run(() => assignTask({ taskId: task.id, userId: e.target.value || null }), t.rooms.assignmentUpdated)}
                 >
-                  <option value="">Unassigned</option>
+                  <option value="">{t.tasks.unassigned}</option>
                   {staff.map((u) => (
                     <option key={u.id} value={u.id}>
                       {u.name}
@@ -125,8 +127,8 @@ function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: st
                 </Select>
               </div>
               {!done ? (
-                <Button size="sm" variant="ghost" className="text-tulip" disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "CANCELLED" }), "Task cancelled")}>
-                  <XCircle aria-hidden /> Cancel task
+                <Button size="sm" variant="ghost" className="text-tulip" disabled={pending} onClick={() => run(() => updateTaskStatus({ taskId: task.id, status: "CANCELLED" }), t.tasks.cancelled)}>
+                  <XCircle aria-hidden /> {t.tasks.cancel}
                 </Button>
               ) : null}
             </div>
@@ -135,12 +137,12 @@ function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: st
             className="flex gap-2"
             onSubmit={(e) => {
               e.preventDefault();
-              run(() => addTaskNote({ taskId: task.id, note }), "Note added", () => setNote(""));
+              run(() => addTaskNote({ taskId: task.id, note }), t.tasks.noteAdded, () => setNote(""));
             }}
           >
-            <Input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Add a note or progress update" className="h-9 text-[14px]" aria-label="Note" />
+            <Input value={note} onChange={(e) => setNote(e.target.value)} placeholder={t.tasks.notePh} className="h-9 text-[14px]" aria-label={t.tasks.note} />
             <Button size="sm" type="submit" variant="secondary" disabled={pending || !note.trim()} className="h-9">
-              <MessageSquarePlus aria-hidden /> Add
+              <MessageSquarePlus aria-hidden /> {t.tasks.add}
             </Button>
           </form>
           <ol className="space-y-2 border-l border-line pl-4">
@@ -148,10 +150,10 @@ function TaskCard({ task, staff, canManage }: { task: TaskItem; staff?: { id: st
               <li key={ev.id} className="relative text-[13px]">
                 <span aria-hidden className="absolute -left-[21px] top-1.5 size-2 rounded-full bg-line" />
                 <span className="text-ink-soft">
-                  <span className="font-medium">{ev.user?.name ?? "System"}</span> · {ev.kind === "note" ? "note" : ev.kind}
+                  <span className="font-medium">{ev.user?.name ?? t.tasks.system}</span> · {ev.kind === "note" ? "note" : ev.kind}
                 </span>
                 {ev.message ? <span className="text-slate"> — {ev.message}</span> : null}
-                <span className="ml-1 text-mist">{formatDateTime(ev.createdAt)}</span>
+                <span className="ml-1 text-mist">{formatDateTime(ev.createdAt, lang)}</span>
               </li>
             ))}
           </ol>

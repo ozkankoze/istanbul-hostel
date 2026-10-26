@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Field, Select, Textarea } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/ui/sheet";
 import { HK_STATUS, OCCUPANCY } from "@/lib/status";
-import { cn, timeAgo } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { assignRoom, reportMaintenance, setRoomStatus } from "@/server/actions/housekeeping";
+import { useStaffText } from "./staff-lang";
 import { useStaffAction } from "./use-action";
 
 export type BoardRoom = {
@@ -49,6 +50,7 @@ export function RoomBoard({
   currentUserId: string;
   compact?: boolean;
 }) {
+  const { t } = useStaffText();
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("ALL");
   const [mine, setMine] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
@@ -79,21 +81,20 @@ export function RoomBoard({
               )}
             >
               {f !== "ALL" ? <span aria-hidden className={cn("size-2 rounded-full", HK_STATUS[f]!.dot)} /> : null}
-              {f === "ALL" ? "All rooms" : HK_STATUS[f]!.label}
+              {f === "ALL" ? t.rooms.all : t.hk[f]}
               <span className={cn("text-[12px]", filter === f ? "text-paper/60" : "text-mist")}>{counts[f] ?? 0}</span>
             </button>
           ))}
         </div>
         <label className="flex shrink-0 items-center gap-2 text-[13px] text-ink-soft">
           <input type="checkbox" checked={mine} onChange={(e) => setMine(e.target.checked)} className="size-4 accent-cobalt" />
-          Assigned to me
+          {t.rooms.mine}
         </label>
       </div>
 
       <ul className={cn("mt-4 grid gap-3", compact ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6")}>
         {shown.map((r) => {
           const s = HK_STATUS[r.status]!;
-          const o = OCCUPANCY[r.occupancy]!;
           return (
             <li key={r.id}>
               <button
@@ -104,19 +105,19 @@ export function RoomBoard({
                 <span aria-hidden className={cn("absolute inset-y-0 left-0 w-1", s.dot)} />
                 <div className="flex items-start justify-between gap-2">
                   <span className="font-display text-[26px] leading-none">{r.number}</span>
-                  {r.urgentTasks ? <AlertTriangle aria-label="Urgent task" className="size-4 text-tulip" /> : null}
+                  {r.urgentTasks ? <AlertTriangle aria-label={t.rooms.urgent} className="size-4 text-tulip" /> : null}
                 </div>
                 <span className="mt-1 line-clamp-1 text-[12.5px] text-slate">{r.typeName}</span>
-                <span className="mt-3 text-[13px] font-medium">{s.label}</span>
+                <span className="mt-3 text-[13px] font-medium">{t.hk[r.status]}</span>
                 <span className="mt-1 flex items-center gap-1 text-[12px] text-slate">
                   <BedDouble aria-hidden className="size-3.5" />
-                  {r.kind === "DORM" ? `${r.occupiedUnits}/${r.capacity} beds` : o.label}
+                  {r.kind === "DORM" ? t.rooms.beds(r.occupiedUnits, r.capacity) : t.occ[r.occupancy]}
                 </span>
                 {r.arrivingToday || r.departingToday ? (
                   <span className="mt-1 text-[12px] text-cobalt">
-                    {r.departingToday ? `${r.departingToday} out` : ""}
+                    {r.departingToday ? t.rooms.out(r.departingToday) : ""}
                     {r.departingToday && r.arrivingToday ? " · " : ""}
-                    {r.arrivingToday ? `${r.arrivingToday} in` : ""} today
+                    {r.arrivingToday ? t.rooms.in(r.arrivingToday) : ""} {t.rooms.today}
                   </span>
                 ) : null}
                 <span className="mt-auto flex items-center justify-between gap-2 pt-3 text-[11.5px] text-mist">
@@ -124,14 +125,14 @@ export function RoomBoard({
                     <User aria-hidden className="size-3 shrink-0" />
                     <span className="truncate">{r.assignedTo?.name.split(" ")[0] ?? "—"}</span>
                   </span>
-                  <span className="shrink-0">{timeAgo(new Date(r.statusUpdatedAt))}</span>
+                  <span className="shrink-0">{t.ago(new Date(r.statusUpdatedAt))}</span>
                 </span>
               </button>
             </li>
           );
         })}
       </ul>
-      {!shown.length ? <p className="mt-6 text-[14px] text-slate">No rooms match this filter.</p> : null}
+      {!shown.length ? <p className="mt-6 text-[14px] text-slate">{t.rooms.none}</p> : null}
 
       <Sheet open={!!open} onOpenChange={(v) => !v && setOpenId(null)}>
         <SheetContent side="right" className="overflow-y-auto p-6">
@@ -164,6 +165,7 @@ function RoomActions({
   canAssign: boolean;
   onDone: () => void;
 }) {
+  const { t } = useStaffText();
   const { pending, run } = useStaffAction();
   const [mode, setMode] = useState<"main" | "maintenance">("main");
   const [note, setNote] = useState("");
@@ -172,58 +174,58 @@ function RoomActions({
   const s = HK_STATUS[room.status]!;
   const o = OCCUPANCY[room.occupancy]!;
 
-  const set = (status: string, label: string) =>
-    run(() => setRoomStatus({ roomId: room.id, status, note: note || undefined }), `Room ${room.number}: ${label}`, onDone);
+  const set = (status: string) =>
+    run(() => setRoomStatus({ roomId: room.id, status, note: note || undefined }), `${t.rooms.room(room.number)}: ${t.rooms.done[status]}`, onDone);
 
   return (
     <div>
-      <SheetTitle className="font-display text-[34px] leading-none">Room {room.number}</SheetTitle>
+      <SheetTitle className="font-display text-[34px] leading-none">{t.rooms.room(room.number)}</SheetTitle>
       <SheetDescription className="mt-1 text-[14px] text-slate">
-        {room.typeName} · Floor {room.floor}
+        {room.typeName} · {t.rooms.floor(room.floor)}
       </SheetDescription>
       <div className="mt-4 flex flex-wrap gap-2">
         <Badge tone={s.tone} dot>
-          {s.label}
+          {t.hk[room.status]}
         </Badge>
-        <Badge tone={o.tone}>{room.kind === "DORM" ? `${room.occupiedUnits}/${room.capacity} beds occupied` : o.label}</Badge>
+        <Badge tone={o.tone}>{room.kind === "DORM" ? t.rooms.bedsOccupied(room.occupiedUnits, room.capacity) : t.occ[room.occupancy]}</Badge>
       </div>
       {room.note ? <p className="mt-3 rounded-md bg-limestone px-3 py-2 text-[13.5px] text-ink-soft">{room.note}</p> : null}
-      {room.blockedReason ? <p className="mt-2 text-[13px] text-slate">Blocked today: {room.blockedReason}</p> : null}
-      {room.guests.length ? <p className="mt-2 text-[13px] text-slate">In house: {room.guests.join(", ")}</p> : null}
+      {room.blockedReason ? <p className="mt-2 text-[13px] text-slate">{t.rooms.blocked} {room.blockedReason}</p> : null}
+      {room.guests.length ? <p className="mt-2 text-[13px] text-slate">{t.rooms.inHouse} {room.guests.join(", ")}</p> : null}
 
       {mode === "main" ? (
         <>
           <div className="mt-6 grid gap-2">
-            <Button size="lg" variant={room.status === "CLEANING" ? "secondary" : "primary"} disabled={pending || room.status === "CLEANING"} onClick={() => set("CLEANING", "cleaning started")}>
-              <Brush aria-hidden /> Start cleaning
+            <Button size="lg" variant={room.status === "CLEANING" ? "secondary" : "primary"} disabled={pending || room.status === "CLEANING"} onClick={() => set("CLEANING")}>
+              <Brush aria-hidden /> {t.rooms.start}
             </Button>
-            <Button size="lg" variant="secondary" disabled={pending || room.status === "CLEAN"} onClick={() => set("CLEAN", "marked clean")}>
-              <Sparkles aria-hidden /> Mark cleaning completed
+            <Button size="lg" variant="secondary" disabled={pending || room.status === "CLEAN"} onClick={() => set("CLEAN")}>
+              <Sparkles aria-hidden /> {t.rooms.clean}
             </Button>
             {canInspect ? (
-              <Button size="lg" variant="secondary" disabled={pending || room.status === "INSPECTED"} onClick={() => set("INSPECTED", "inspected & ready")}>
-                <ClipboardCheck aria-hidden /> Mark inspected / ready
+              <Button size="lg" variant="secondary" disabled={pending || room.status === "INSPECTED"} onClick={() => set("INSPECTED")}>
+                <ClipboardCheck aria-hidden /> {t.rooms.inspect}
               </Button>
             ) : null}
-            <Button size="lg" variant="secondary" disabled={pending || room.status === "DIRTY"} onClick={() => set("DIRTY", "marked dirty")}>
-              <CheckCheck aria-hidden /> Needs cleaning
+            <Button size="lg" variant="secondary" disabled={pending || room.status === "DIRTY"} onClick={() => set("DIRTY")}>
+              <CheckCheck aria-hidden /> {t.rooms.dirty}
             </Button>
             <Button size="lg" variant="ghost" className="text-tulip hover:bg-tulip-soft" onClick={() => setMode("maintenance")}>
-              <Wrench aria-hidden /> Report maintenance issue
+              <Wrench aria-hidden /> {t.rooms.report}
             </Button>
           </div>
-          <Field label="Note (optional)" htmlFor="room-note" className="mt-6" hint="Saved with the next status change.">
-            <Textarea id="room-note" rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="e.g. Extra towels left, window latch loose" />
+          <Field label={t.rooms.note} htmlFor="room-note" className="mt-6" hint={t.rooms.noteHint}>
+            <Textarea id="room-note" rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder={t.rooms.notePh} />
           </Field>
           {canAssign && staff ? (
-            <Field label="Assigned housekeeper" htmlFor="room-assign" className="mt-5">
+            <Field label={t.rooms.assignee} htmlFor="room-assign" className="mt-5">
               <Select
                 id="room-assign"
                 value={room.assignedTo?.id ?? ""}
                 disabled={pending}
-                onChange={(e) => run(() => assignRoom({ roomId: room.id, userId: e.target.value || null }), "Assignment updated")}
+                onChange={(e) => run(() => assignRoom({ roomId: room.id, userId: e.target.value || null }), t.rooms.assignmentUpdated)}
               >
-                <option value="">Unassigned</option>
+                <option value="">{t.rooms.unassigned}</option>
                 {staff.map((u) => (
                   <option key={u.id} value={u.id}>
                     {u.name}
@@ -238,26 +240,26 @@ function RoomActions({
           className="mt-6 space-y-4"
           onSubmit={(e) => {
             e.preventDefault();
-            run(() => reportMaintenance({ roomId: room.id, description: issue, priority }), "Maintenance issue reported", onDone);
+            run(() => reportMaintenance({ roomId: room.id, description: issue, priority }), t.rooms.reported, onDone);
           }}
         >
-          <Field label="What's wrong?" htmlFor="issue">
-            <Textarea id="issue" rows={4} value={issue} onChange={(e) => setIssue(e.target.value)} required placeholder="e.g. Shower drain blocked, bed B2 light broken" />
+          <Field label={t.rooms.wrong} htmlFor="issue">
+            <Textarea id="issue" rows={4} value={issue} onChange={(e) => setIssue(e.target.value)} required placeholder={t.rooms.wrongPh} />
           </Field>
-          <Field label="Priority" htmlFor="issue-priority">
+          <Field label={t.rooms.priority} htmlFor="issue-priority">
             <Select id="issue-priority" value={priority} onChange={(e) => setPriority(e.target.value)}>
-              <option value="LOW">Low</option>
-              <option value="NORMAL">Normal</option>
-              <option value="HIGH">High</option>
-              <option value="URGENT">Urgent — room can&apos;t be used</option>
+              <option value="LOW">{t.priorityLabel.LOW}</option>
+              <option value="NORMAL">{t.priorityLabel.NORMAL}</option>
+              <option value="HIGH">{t.priorityLabel.HIGH}</option>
+              <option value="URGENT">{t.rooms.urgentOpt}</option>
             </Select>
           </Field>
           <div className="flex gap-2">
             <Button type="button" variant="ghost" onClick={() => setMode("main")}>
-              Back
+              {t.rooms.back}
             </Button>
             <Button type="submit" variant="danger" disabled={pending} className="flex-1">
-              Report issue
+              {t.rooms.reportSubmit}
             </Button>
           </div>
         </form>

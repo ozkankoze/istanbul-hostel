@@ -7,6 +7,7 @@ import { TaskList } from "@/components/staff/task-list";
 import { cn } from "@/lib/utils";
 import { can, requirePermission } from "@/server/auth";
 import { getStaffBookings } from "@/server/staff-bookings";
+import { getStaffText } from "@/server/staff-lang";
 import { getBoardRooms, getHousekeepers, getTasks } from "@/server/tasks";
 
 export default async function StaffHome({ searchParams }: PageProps<"/staff">) {
@@ -15,10 +16,11 @@ export default async function StaffHome({ searchParams }: PageProps<"/staff">) {
   const desk = can(user.role, "reservations");
   const tab = sp.tab === "rooms" ? "rooms" : sp.tab === "bookings" && desk ? "bookings" : "tasks";
   const supervisor = can(user.role, "tasks");
+  const { lang, t: tx } = await getStaffText();
 
   const [bookings, rooms, myTasks, openTasks, staff] = await Promise.all([
-    desk ? getStaffBookings() : Promise.resolve(null),
-    getBoardRooms(),
+    desk ? getStaffBookings(lang) : Promise.resolve(null),
+    getBoardRooms(lang),
     getTasks({ assignedToId: user.id, OR: [{ status: { in: ["OPEN", "IN_PROGRESS"] } }, { completedAt: { gte: addDays(propertyToday(), -1) } }] }),
     getTasks({ assignedToId: null, status: { in: ["OPEN", "IN_PROGRESS"] } }),
     supervisor ? getHousekeepers() : Promise.resolve(undefined),
@@ -28,30 +30,30 @@ export default async function StaffHome({ searchParams }: PageProps<"/staff">) {
   const cleaning = rooms.filter((r) => r.status === "CLEANING").length;
   const ready = rooms.filter((r) => r.status === "CLEAN" || r.status === "INSPECTED").length;
   const attention = bookings ? bookings.pending.length + bookings.arrivals.length : 0;
-  const greeting = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Istanbul" }).format(new Date());
+  const greeting = new Intl.DateTimeFormat(lang === "sr" ? "sr-Latn-RS" : "en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Istanbul" }).format(new Date());
 
   return (
     <>
       <p className="text-[13px] text-slate">{greeting}</p>
-      <h1 className="mt-1 font-display text-[30px] leading-tight">Hi {user.name.split(" ")[0]}.</h1>
+      <h1 className="mt-1 font-display text-[30px] leading-tight">{tx.hi(user.name.split(" ")[0]!)}</h1>
       <p className="mt-1 text-[15px] text-slate">
         {tab === "bookings" && bookings
-          ? `${bookings.pending.length} new request${bookings.pending.length === 1 ? "" : "s"} · ${bookings.arrivals.length} arriving today.`
-          : `You have ${activeMine} open task${activeMine === 1 ? "" : "s"} · ${dirty} room${dirty === 1 ? "" : "s"} waiting to be cleaned.`}
+          ? tx.bookingSummary(bookings.pending.length, bookings.arrivals.length)
+          : tx.taskSummary(activeMine, dirty)}
       </p>
 
       <div className={cn("mt-4 grid gap-2", tab === "bookings" ? "grid-cols-4" : "grid-cols-3")}>
         {(tab === "bookings" && bookings
           ? [
-              { label: "Requests", value: bookings.pending.length, tone: "bg-saffron/15 text-[#9a6a00]", href: "#requests" },
-              { label: "Arriving", value: bookings.arrivals.length, tone: "bg-cobalt/10 text-cobalt", href: "#arrivals" },
-              { label: "Leaving", value: bookings.departures.length, tone: "bg-tulip/10 text-tulip", href: "#departures" },
-              { label: "In house", value: bookings.inHouse, tone: "bg-tile/10 text-tile", href: "#upcoming" },
+              { label: tx.stat.requests, value: bookings.pending.length, tone: "bg-saffron/15 text-[#9a6a00]", href: "#requests" },
+              { label: tx.stat.arriving, value: bookings.arrivals.length, tone: "bg-cobalt/10 text-cobalt", href: "#arrivals" },
+              { label: tx.stat.leaving, value: bookings.departures.length, tone: "bg-tulip/10 text-tulip", href: "#departures" },
+              { label: tx.stat.inHouse, value: bookings.inHouse, tone: "bg-tile/10 text-tile", href: "#upcoming" },
             ]
           : [
-              { label: "To clean", value: dirty, tone: "bg-tulip/10 text-tulip", href: "/staff?tab=rooms" },
-              { label: "Cleaning", value: cleaning, tone: "bg-saffron/15 text-[#9a6a00]", href: "/staff?tab=rooms" },
-              { label: "Ready", value: ready, tone: "bg-tile/10 text-tile", href: "/staff?tab=rooms" },
+              { label: tx.stat.toClean, value: dirty, tone: "bg-tulip/10 text-tulip", href: "/staff?tab=rooms" },
+              { label: tx.stat.cleaning, value: cleaning, tone: "bg-saffron/15 text-[#9a6a00]", href: "/staff?tab=rooms" },
+              { label: tx.stat.ready, value: ready, tone: "bg-tile/10 text-tile", href: "/staff?tab=rooms" },
             ]
         ).map((s) => (
           <Link key={s.label} href={s.href} className={cn("rounded-xl px-3 py-2.5", s.tone)}>
@@ -67,9 +69,9 @@ export default async function StaffHome({ searchParams }: PageProps<"/staff">) {
       >
         <div className={cn("mx-auto grid h-16 max-w-3xl", desk ? "grid-cols-3" : "grid-cols-2")}>
           {[
-            ...(desk ? [{ id: "bookings", label: "Bookings", href: "/staff?tab=bookings", Icon: CalendarCheck, count: attention }] : []),
-            { id: "tasks", label: "My tasks", href: "/staff", Icon: ListChecks, count: activeMine },
-            { id: "rooms", label: "Rooms", href: "/staff?tab=rooms", Icon: BedDouble, count: dirty },
+            ...(desk ? [{ id: "bookings", label: tx.tabs.bookings, href: "/staff?tab=bookings", Icon: CalendarCheck, count: attention }] : []),
+            { id: "tasks", label: tx.tabs.tasks, href: "/staff", Icon: ListChecks, count: activeMine },
+            { id: "rooms", label: tx.tabs.rooms, href: "/staff?tab=rooms", Icon: BedDouble, count: dirty },
           ].map(({ id, label, href, Icon, count }) => (
             <Link
               key={id}
@@ -98,31 +100,31 @@ export default async function StaffHome({ searchParams }: PageProps<"/staff">) {
         {tab === "bookings" && bookings ? (
           <div className="space-y-9">
             <section id="requests" className="scroll-mt-20">
-              <h2 className="mb-3 text-[15px] font-semibold">New booking requests</h2>
-              <BookingList items={bookings.pending} empty="No requests waiting. New ones from the website appear here." />
+              <h2 className="mb-3 text-[15px] font-semibold">{tx.bookings.requests}</h2>
+              <BookingList lang={lang} items={bookings.pending} empty={tx.bookings.requestsEmpty} />
             </section>
             <section id="arrivals" className="scroll-mt-20">
-              <h2 className="mb-3 text-[15px] font-semibold">Arriving today</h2>
-              <BookingList items={bookings.arrivals} empty="No arrivals today." />
+              <h2 className="mb-3 text-[15px] font-semibold">{tx.bookings.arrivals}</h2>
+              <BookingList lang={lang} items={bookings.arrivals} empty={tx.bookings.arrivalsEmpty} />
             </section>
             <section id="departures" className="scroll-mt-20">
-              <h2 className="mb-3 text-[15px] font-semibold">Leaving today</h2>
-              <BookingList items={bookings.departures} empty="No departures today." departing />
+              <h2 className="mb-3 text-[15px] font-semibold">{tx.bookings.departures}</h2>
+              <BookingList lang={lang} items={bookings.departures} empty={tx.bookings.departuresEmpty} departing />
             </section>
             <section id="upcoming" className="scroll-mt-20">
-              <h2 className="mb-3 text-[15px] font-semibold">Next 3 days</h2>
-              <BookingList items={bookings.upcoming} empty="No confirmed arrivals in the next 3 days." />
+              <h2 className="mb-3 text-[15px] font-semibold">{tx.bookings.upcoming}</h2>
+              <BookingList lang={lang} items={bookings.upcoming} empty={tx.bookings.upcomingEmpty} />
             </section>
           </div>
         ) : tab === "tasks" ? (
           <div className="space-y-10">
             <section>
-              <h2 className="mb-3 text-[15px] font-semibold">Assigned to me</h2>
-              <TaskList tasks={myTasks} staff={staff} canManage={supervisor} empty="Nothing assigned to you right now." />
+              <h2 className="mb-3 text-[15px] font-semibold">{tx.assignedToMe}</h2>
+              <TaskList tasks={myTasks} staff={staff} canManage={supervisor} empty={tx.emptyMine} />
             </section>
             <section>
-              <h2 className="mb-3 text-[15px] font-semibold">Unassigned — anyone can pick up</h2>
-              <TaskList tasks={openTasks} staff={staff} canManage={supervisor} empty="No unassigned tasks." />
+              <h2 className="mb-3 text-[15px] font-semibold">{tx.unassignedPick}</h2>
+              <TaskList tasks={openTasks} staff={staff} canManage={supervisor} empty={tx.emptyOpen} />
             </section>
           </div>
         ) : (
