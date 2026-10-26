@@ -1,8 +1,8 @@
 {
   "id": "/staff",
-  "name": "Istanbul Hostel Housekeeping",
-  "short_name": "Housekeeping",
-  "description": "Rooms, cleaning status and tasks for the housekeeping team.",
+  "name": "Istanbul Hostel Staff",
+  "short_name": "Hostel Staff",
+  "description": "Bookings, rooms, cleaning status and tasks for the hostel team.",
   "start_url": "/staff?source=app",
   "scope": "/",
   "display": "standalone",
@@ -16,6 +16,7 @@
     { "src": "/hk/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
+    { "name": "Bookings", "url": "/staff?tab=bookings", "icons": [{ "src": "/hk/icon-192.png", "sizes": "192x192" }] },
     { "name": "My tasks", "url": "/staff", "icons": [{ "src": "/hk/icon-192.png", "sizes": "192x192" }] },
     { "name": "Rooms", "url": "/staff?tab=rooms", "icons": [{ "src": "/hk/icon-192.png", "sizes": "192x192" }] }
   ]

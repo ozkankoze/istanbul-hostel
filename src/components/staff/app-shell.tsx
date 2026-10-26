@@ -110,7 +110,7 @@ export function StaffAppShell() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hk/icon-192.png" alt="" className="size-10 rounded-xl" />
           <div className="min-w-0 flex-1 text-[13.5px] leading-snug">
-            <p className="font-semibold">Install the Housekeeping app</p>
+            <p className="font-semibold">Install the staff app</p>
             <p className="text-paper/70">Opens full screen from your home screen.</p>
           </div>
           <button onClick={install} className="flex items-center gap-1.5 rounded-lg bg-tile-bright px-3 py-2 text-[13px] font-semibold text-ink">
@@ -127,7 +127,7 @@ export function StaffAppShell() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/hk/icon-192.png" alt="" className="size-10 rounded-xl" />
             <div className="min-w-0 flex-1 text-[13.5px] leading-snug">
-              <p className="font-semibold">Add Housekeeping to your home screen</p>
+              <p className="font-semibold">Add the staff app to your home screen</p>
               <p className="text-paper/70">Two taps, no app store.</p>
             </div>
             <button

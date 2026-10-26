@@ -72,7 +72,7 @@ export default async function QrPage() {
         </div>
       </Panel>
 
-      <Panel className="mt-6" title="Housekeeping app" description="For staff only. Scanning this does not give access: each housekeeper signs in with their own account.">
+      <Panel className="mt-6" title="Staff app" description="For your team only. Scanning this does not give access: everyone signs in with their own account. Housekeepers see rooms and tasks; reception also sees bookings.">
         <div className="grid gap-6 md:grid-cols-[160px_1fr]">
           <div className="mx-auto w-full max-w-[160px] rounded-lg border border-line bg-white p-3 [&_svg]:h-auto [&_svg]:w-full" dangerouslySetInnerHTML={{ __html: staffSvg }} />
           <div className="text-[14px]">
@@ -84,7 +84,7 @@ export default async function QrPage() {
               <li>
                 Tap <strong>Install</strong> on the banner, or open the browser menu (⋮) and choose <strong>Install app</strong> / <strong>Add to Home screen</strong>.
               </li>
-              <li>The Housekeeping icon appears on the home screen and opens full screen, like any other app.</li>
+              <li>The app icon appears on the home screen and opens full screen, like any other app.</li>
             </ol>
             <p className="mt-3 text-[12.5px] text-mist">No app store needed. Updates arrive automatically; nothing to reinstall.</p>
           </div>

@@ -9,10 +9,10 @@ import { logout } from "@/server/actions/auth";
 import { can, requirePermission } from "@/server/auth";
 
 export const metadata: Metadata = {
-  title: "Housekeeping",
+  title: "Staff",
   manifest: "/hk/manifest.webmanifest",
-  applicationName: "Housekeeping",
-  appleWebApp: { capable: true, title: "Housekeeping", statusBarStyle: "black-translucent" },
+  applicationName: "Hostel Staff",
+  appleWebApp: { capable: true, title: "Hostel Staff", statusBarStyle: "black-translucent" },
   icons: { icon: "/hk/icon.svg", apple: "/hk/apple-touch-icon.png" },
 };
 
@@ -31,7 +31,7 @@ export default async function StaffLayout({ children }: { children: React.ReactN
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between gap-3 px-4">
           <Link href="/staff" className="flex items-center gap-2">
             <LogoMark className="size-6 text-paper" />
-            <span className="text-[16px] font-semibold tracking-[-0.01em]">Housekeeping</span>
+            <span className="text-[16px] font-semibold tracking-[-0.01em]">{can(user.role, "reservations") ? "Staff" : "Housekeeping"}</span>
           </Link>
           <div className="flex items-center gap-1.5">
             {can(user.role, "overview") ? (
